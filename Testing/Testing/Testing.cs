@@ -15,9 +15,15 @@ namespace Testing
 {
     public class Testing : Microsoft.Xna.Framework.Game
     {
+        //Basic game info:
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         GraphicsDevice device;
+
+        //The squares:
+        GameObject BlueSquare;
+        GameObject RedSquare;
+        GameObject YellowSquare;
 
         public Testing()
         {
@@ -34,6 +40,18 @@ namespace Testing
             graphics.ApplyChanges();
             Window.Title = "Testing the Sandi's Way wrapper";
 
+            //Initialize the static classes:
+            ObjectManager.Objects = new List<GameObject>();
+            SpriteContainer.Sprites = new Dictionary<string, Sprite>();
+
+            //Initialize the squares:
+            BlueSquare = new Square(new Vector2(0, 0), new Vector2(0, 0), 0);
+            RedSquare = new Square(new Vector2(64, 0), new Vector2(0, 0), 0);
+            YellowSquare = new Square(new Vector2(64 + 64, 0), new Vector2(0, 0), 0);
+            ObjectManager.Create(BlueSquare);
+            ObjectManager.Create(RedSquare);
+            ObjectManager.Create(YellowSquare);
+
             base.Initialize();
         }
 
@@ -48,9 +66,13 @@ namespace Testing
             GameInfo.RefDeviceManager = graphics;
             GameInfo.RefContent = Content;
 
-            //Initialize the static classes:
-            ObjectManager.Objects = new List<GameObject>();
-            SpriteContainer.Sprites = new Dictionary<string, Sprite>();
+            //Load the square sprites:
+            SpriteContainer.AddSprite("BlueSquare");
+            SpriteContainer.AddSprite("RedSquare");
+            SpriteContainer.AddSprite("YellowSquare");
+            BlueSquare.Sprite = SpriteContainer.Sprites["BlueSquare"];
+            RedSquare.Sprite = SpriteContainer.Sprites["RedSquare"];
+            YellowSquare.Sprite = SpriteContainer.Sprites["YellowSquare"];
         }
 
         protected override void UnloadContent()

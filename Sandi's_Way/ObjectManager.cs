@@ -20,9 +20,13 @@ namespace Sandi_s_Way
 
         static public void Create(GameObject obj)
         {
+            Objects.Add(obj);
+            //TODO: Call the create events
         }
         static public void Destroy(GameObject obj)
         {
+            Objects.Remove(obj);
+            //TODO: Call the delete events
         }
 
         static public void UpdateAll()
