@@ -13,24 +13,32 @@ using Microsoft.Xna.Framework.Media;
 namespace Sandi_s_Way
 {
     //creates, destroys, updates, drawes and moves gameobjects, and triggers their events
-    public class ObjectManager 
+    //this is static because you only need one instance
+    public static class ObjectManager 
     {
-        public List<GameObject> Objects = new List<GameObject>();
+        static public List<GameObject> Objects;
 
-        public void Create(GameObject obj)
+        static public void Create(GameObject obj)
         {
         }
-        public void Destroy(GameObject obj)
+        static public void Destroy(GameObject obj)
         {
         }
 
-        public void UpdateAll()
+        static public void UpdateAll()
         {
         }
-        public void DrawAll()
+        static public void DrawAll()
         {
+            foreach (var obj in Objects)
+            {
+                if (obj.Visable)
+                {
+                    obj.Sprite.Draw(obj.Position);
+                }
+            }
         }
-    }
+    } 
 }
 
 //HOW TO DO OBJECT STORING:

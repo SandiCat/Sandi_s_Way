@@ -19,8 +19,6 @@ namespace Testing
         SpriteBatch spriteBatch;
         GraphicsDevice device;
 
-        ObjectManager objectManager;
-
         public Testing()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -36,8 +34,6 @@ namespace Testing
             graphics.ApplyChanges();
             Window.Title = "Testing the Sandi's Way wrapper";
 
-            objectManager = new ObjectManager();
-
             base.Initialize();
         }
 
@@ -50,6 +46,11 @@ namespace Testing
             GameInfo.RefSpriteBatch = spriteBatch;
             GameInfo.RefDevice = device;
             GameInfo.RefDeviceManager = graphics;
+            GameInfo.RefContent = Content;
+
+            //Initialize the static classes:
+            ObjectManager.Objects = new List<GameObject>();
+            SpriteContainer.Sprites = new Dictionary<string, Sprite>();
         }
 
         protected override void UnloadContent()
@@ -58,7 +59,7 @@ namespace Testing
 
         protected override void Update(GameTime gameTime)
         {
-            objectManager.UpdateAll();
+            ObjectManager.UpdateAll();
             base.Update(gameTime);
         }
 
@@ -67,7 +68,7 @@ namespace Testing
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             spriteBatch.Begin(); 
-            objectManager.DrawAll();
+            ObjectManager.DrawAll();
             spriteBatch.End();
 
             base.Draw(gameTime);

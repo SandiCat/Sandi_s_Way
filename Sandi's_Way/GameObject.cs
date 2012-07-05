@@ -19,8 +19,9 @@ namespace Sandi_s_Way
         public Vector2 Direction = new Vector2();
         public float Speed = 0;
         public readonly Vector2 StartingPosition = new Vector2();
-        public static Sprite Sprite; 
+        public Sprite Sprite; 
         public List<Alarm> Alarms;
+        public bool Visable = true;
 
         //The constructor:
         public GameObject(Vector2 position, Vector2 direction, float speed)
@@ -77,5 +78,3 @@ namespace Sandi_s_Way
         } //triggerd when and if an object touches the boundary
     }
 }
-
-//You'll have to initialize sprites for each class that inherits this class speperately in the game class LoadContent() method

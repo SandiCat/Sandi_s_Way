@@ -19,5 +19,6 @@ namespace Sandi_s_Way
         public static SpriteBatch RefSpriteBatch;
         public static GraphicsDevice RefDevice;
         public static GraphicsDeviceManager RefDeviceManager;
+        public static ContentManager RefContent;
     }
 }
