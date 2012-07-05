@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sandi_s_Way", "Sandi's_Way\Sandi_s_Way.csproj", "{7E24E051-4CD8-48DD-AA5F-D77FE9025FF0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing\Testing.csproj", "{9424A4B3-A45C-4AAA-96C1-076B4E3C5599}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestingContent", "Testing\TestingContent\TestingContent.contentproj", "{CED257EB-31F9-482B-8441-4CF33B6F4DAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7E24E051-4CD8-48DD-AA5F-D77FE9025FF0}.Debug|x86.ActiveCfg = Debug|x86
+		{7E24E051-4CD8-48DD-AA5F-D77FE9025FF0}.Debug|x86.Build.0 = Debug|x86
+		{7E24E051-4CD8-48DD-AA5F-D77FE9025FF0}.Release|x86.ActiveCfg = Release|x86
+		{7E24E051-4CD8-48DD-AA5F-D77FE9025FF0}.Release|x86.Build.0 = Release|x86
+		{9424A4B3-A45C-4AAA-96C1-076B4E3C5599}.Debug|x86.ActiveCfg = Debug|x86
+		{9424A4B3-A45C-4AAA-96C1-076B4E3C5599}.Debug|x86.Build.0 = Debug|x86
+		{9424A4B3-A45C-4AAA-96C1-076B4E3C5599}.Release|x86.ActiveCfg = Release|x86
+		{9424A4B3-A45C-4AAA-96C1-076B4E3C5599}.Release|x86.Build.0 = Release|x86
+		{CED257EB-31F9-482B-8441-4CF33B6F4DAB}.Debug|x86.ActiveCfg = Debug|x86
+		{CED257EB-31F9-482B-8441-4CF33B6F4DAB}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
