@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Simon_says
+namespace Testing
 {
     public class DebuggVariable //things that always stay in the console, and you can change them
     {

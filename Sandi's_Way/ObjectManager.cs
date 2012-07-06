@@ -46,6 +46,12 @@ namespace Sandi_s_Way
             {
                 obj.Position += obj.Direction * obj.Speed;
             }
+
+            //Call the update event:
+            foreach (var obj in Objects)
+            {
+                obj.Update();
+            }
         }
         static public void DrawAll()
         {
@@ -55,6 +61,12 @@ namespace Sandi_s_Way
                 {
                     obj.Sprite.Draw(obj.Position);
                 }
+            }
+
+            //Call the draw event:
+            foreach (var obj in Objects)
+            {
+                obj.Draw();
             }
         }
     } 

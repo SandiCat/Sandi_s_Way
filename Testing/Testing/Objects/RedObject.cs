@@ -19,5 +19,16 @@ namespace Testing
         public RedObject(Vector2 position, Vector2 direction, float speed) : base(position, direction, speed)
         {
         }
+
+        public override void Create(GameObject createdObject)
+        {
+            if (createdObject == this)
+            {
+                Testing.Console.WriteLine("A red object has been created");
+            }
+        }
+        public override void Update()
+        {
+        }
     }
 }

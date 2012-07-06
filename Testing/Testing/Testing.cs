@@ -25,6 +25,10 @@ namespace Testing
         static public RedObject Red;
         static public YellowObject Yellow;
 
+        //The debug console:
+        public static DebuggConsole Console;
+        SpriteFont DebuggConsoleFont;
+
         public Testing()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -33,6 +37,9 @@ namespace Testing
 
         protected override void Initialize()
         {
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            device = graphics.GraphicsDevice;
+
             //Initialize the game:
             graphics.PreferredBackBufferWidth = 500;
             graphics.PreferredBackBufferHeight = 500;
@@ -43,6 +50,11 @@ namespace Testing
             //Initialize the static classes:
             ObjectManager.Objects = new List<GameObject>();
             SpriteContainer.Sprites = new Dictionary<string, Sprite>();
+
+            //Initialize the debug console:
+            Console = new DebuggConsole(spriteBatch, new Vector2(0, 0));
+            DebuggConsoleFont = Content.Load<SpriteFont>("DebuggConsoleFont");
+            Console.Font = DebuggConsoleFont;
 
             //Initialize the testing objects:
             Blue = new BlueObject(new Vector2(0, 0), new Vector2(0, 0), 0);
@@ -57,9 +69,6 @@ namespace Testing
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            device = graphics.GraphicsDevice;
-
             //Initialize the GameInfo:
             GameInfo.RefSpriteBatch = spriteBatch;
             GameInfo.RefDevice = device;
@@ -91,6 +100,7 @@ namespace Testing
 
             spriteBatch.Begin(); 
             ObjectManager.DrawAll();
+            Console.WriteConsole();
             spriteBatch.End();
 
             base.Draw(gameTime);
