@@ -14,11 +14,11 @@ using Sandi_s_Way;
 
 namespace Testing
 {
-    public class Square : GameObject
+    public class YellowObject : GameObject
     {
-        public Square(Vector2 position, Vector2 direction, float speed) : base(position, direction, speed)
+        public YellowObject(Vector2 position, Vector2 direction, float speed)
+            : base(position, direction, speed)
         {
         }
     }
 }
-//Vector2 position, Vector2 direction, float speed

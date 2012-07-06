@@ -20,10 +20,10 @@ namespace Testing
         SpriteBatch spriteBatch;
         GraphicsDevice device;
 
-        //The squares:
-        GameObject BlueSquare;
-        GameObject RedSquare;
-        GameObject YellowSquare;
+        //Testing objects:
+        public BlueObject Blue;
+        public RedObject Red;
+        public YellowObject Yellow;
 
         public Testing()
         {
@@ -44,13 +44,13 @@ namespace Testing
             ObjectManager.Objects = new List<GameObject>();
             SpriteContainer.Sprites = new Dictionary<string, Sprite>();
 
-            //Initialize the squares:
-            BlueSquare = new Square(new Vector2(0, 0), new Vector2(0, 0), 0);
-            RedSquare = new Square(new Vector2(64, 0), new Vector2(0, 0), 0);
-            YellowSquare = new Square(new Vector2(64 + 64, 0), new Vector2(0, 0), 0);
-            ObjectManager.Create(BlueSquare);
-            ObjectManager.Create(RedSquare);
-            ObjectManager.Create(YellowSquare);
+            //Initialize the testing objects:
+            Blue = new BlueObject(new Vector2(0, 0), new Vector2(0, 0), 0);
+            Red = new RedObject(new Vector2(64, 0), new Vector2(0, 0), 0);
+            Yellow = new YellowObject(new Vector2(64 + 64, 0), new Vector2(0, 0), 0);
+            ObjectManager.Create(Blue);
+            ObjectManager.Create(Red);
+            ObjectManager.Create(Yellow);
 
             base.Initialize();
         }
@@ -66,13 +66,13 @@ namespace Testing
             GameInfo.RefDeviceManager = graphics;
             GameInfo.RefContent = Content;
 
-            //Load the square sprites:
+            //Load the testing object sprites:
             SpriteContainer.AddSprite("BlueSquare");
             SpriteContainer.AddSprite("RedSquare");
             SpriteContainer.AddSprite("YellowSquare");
-            BlueSquare.Sprite = SpriteContainer.Sprites["BlueSquare"];
-            RedSquare.Sprite = SpriteContainer.Sprites["RedSquare"];
-            YellowSquare.Sprite = SpriteContainer.Sprites["YellowSquare"];
+            Blue.Sprite = SpriteContainer.Sprites["BlueSquare"];
+            Red.Sprite = SpriteContainer.Sprites["RedSquare"];
+            Yellow.Sprite = SpriteContainer.Sprites["YellowSquare"];
         }
 
         protected override void UnloadContent()

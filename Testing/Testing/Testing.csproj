@@ -107,9 +107,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Objects\RedObject.cs" />
+    <Compile Include="Objects\BlueObjects.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Square.cs" />
+    <Compile Include="Objects\YellowObject.cs" />
     <Compile Include="Testing.cs" />
   </ItemGroup>
   <ItemGroup>
