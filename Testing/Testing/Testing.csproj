@@ -107,6 +107,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Debugging\DebuggConsole.cs" />
+    <Compile Include="Debugging\DebuggVariable.cs" />
     <Compile Include="Objects\RedObject.cs" />
     <Compile Include="Objects\BlueObjects.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

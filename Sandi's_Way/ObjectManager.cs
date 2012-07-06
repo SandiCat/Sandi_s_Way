@@ -21,16 +21,31 @@ namespace Sandi_s_Way
         static public void Create(GameObject obj)
         {
             Objects.Add(obj);
-            //TODO: Call the create events
+
+            //Call the create event:
+            foreach (var i in Objects) //I used 'i' here instead of 'obj' because 'obj' is taken
+            {
+                i.Create(obj);
+            }
         }
         static public void Destroy(GameObject obj)
         {
             Objects.Remove(obj);
-            //TODO: Call the delete events
+
+            //Call the destroy event:
+            foreach (var i in Objects) //I used 'i' here instead of 'obj' because 'obj' is taken
+            {
+                i.Destroy(obj);
+            }
         }
 
         static public void UpdateAll()
         {
+            //Move the objects:
+            foreach (var obj in Objects)
+            {
+                obj.Position += obj.Direction * obj.Speed;
+            }
         }
         static public void DrawAll()
         {

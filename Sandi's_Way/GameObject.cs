@@ -41,10 +41,10 @@ namespace Sandi_s_Way
         {
         } //triggerd when ObjectManger's DrawAll() method is called
         
-        public virtual void Create()
+        public virtual void Create(GameObject createdObject)
         { 
         } //triggerd at creation of an object  
-        public virtual void Destroy()
+        public virtual void Destroy(GameObject destroyedObject)
         { 
         } //triggerd at detruction of an object
 

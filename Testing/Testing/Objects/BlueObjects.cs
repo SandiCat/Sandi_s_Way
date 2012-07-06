@@ -19,5 +19,14 @@ namespace Testing
         public BlueObject(Vector2 position, Vector2 direction, float speed) : base(position, direction, speed)
         {
         }
+
+        public override void Create(GameObject createdObject)
+        {
+            if (createdObject == this)
+            {
+                this.Direction = new Vector2(0, 1);
+                this.Speed = 5;
+            }
+        }
     }
 }

@@ -21,9 +21,9 @@ namespace Testing
         GraphicsDevice device;
 
         //Testing objects:
-        public BlueObject Blue;
-        public RedObject Red;
-        public YellowObject Yellow;
+        static public BlueObject Blue;
+        static public RedObject Red;
+        static public YellowObject Yellow;
 
         public Testing()
         {
