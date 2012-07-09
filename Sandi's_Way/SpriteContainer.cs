@@ -21,6 +21,13 @@ namespace Sandi_s_Way
             Sprite sprite = new Sprite(GameInfo.RefContent.Load<Texture2D>(filename));
             Sprites.Add(filename, sprite);
         }
+        public static Sprite AddSpriteAndReturn(string filename)
+        {
+            Sprite sprite = new Sprite(GameInfo.RefContent.Load<Texture2D>(filename));
+            Sprites.Add(filename, sprite);
+
+            return Sprites[filename];
+        }
     }
 }
 /* HOW TO DO SPRITE STORING:

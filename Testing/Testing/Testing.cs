@@ -48,7 +48,7 @@ namespace Testing
             Window.Title = "Testing the Sandi's Way wrapper";
 
             //Initialize the static classes:
-            ObjectManager.Objects = new List<GameObject>();
+            ObjectManager.Initialize();
             SpriteContainer.Sprites = new Dictionary<string, Sprite>();
 
             //Initialize the debug console:
@@ -76,12 +76,9 @@ namespace Testing
             GameInfo.RefContent = Content;
 
             //Load the testing object sprites:
-            SpriteContainer.AddSprite("BlueSquare");
-            SpriteContainer.AddSprite("RedSquare");
-            SpriteContainer.AddSprite("YellowSquare");
-            Blue.Sprite = SpriteContainer.Sprites["BlueSquare"];
-            Red.Sprite = SpriteContainer.Sprites["RedSquare"];
-            Yellow.Sprite = SpriteContainer.Sprites["YellowSquare"];
+            Blue.Sprite = SpriteContainer.AddSpriteAndReturn("BlueSquare");
+            Red.Sprite = SpriteContainer.AddSpriteAndReturn("RedSquare");
+            Yellow.Sprite = SpriteContainer.AddSpriteAndReturn("YellowSquare");
         }
 
         protected override void UnloadContent()

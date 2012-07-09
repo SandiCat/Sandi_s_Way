@@ -18,6 +18,17 @@ namespace Sandi_s_Way
     {
         static public List<GameObject> Objects;
 
+        static private Keys[] previousState;
+        static private Keys[] currentState;
+
+        public static void Initialize() //since this is a static object
+        {
+            Objects = new List<GameObject>();
+
+            previousState = new KeyboardState();
+            currentState = new KeyboardState();
+        }
+
         static public void Create(GameObject obj)
         {
             Objects.Add(obj);
@@ -52,6 +63,9 @@ namespace Sandi_s_Way
             {
                 obj.Update();
             }
+
+            //Check keyboard:
+            ManageKeyboard();
         }
         static public void DrawAll()
         {
@@ -68,6 +82,13 @@ namespace Sandi_s_Way
             {
                 obj.Draw();
             }
+        }
+
+        static private void ManageKeyboard()
+        {
+            currentState = Keyboard.GetState().GetPressedKeys();
+
+            previousState = Keyboard.GetState().GetPressedKeys(); 
         }
     } 
 }

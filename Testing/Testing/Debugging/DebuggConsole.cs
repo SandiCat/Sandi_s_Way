@@ -16,6 +16,7 @@ namespace Testing
     {
         public Vector2 Position;
         public SpriteFont Font;
+        public const int FontSize = 8;
         SpriteBatch _spriteBatch;
 
         public List<string> Lines = new List<string>();
@@ -31,24 +32,24 @@ namespace Testing
         {
             Lines.Add(text);
         }
-        private void writeToScreen(string text, int xPosition)
+        private void writeToScreen(string text, int yPosition)
         {
-            _spriteBatch.DrawString(Font, text, new Vector2(Position.X, xPosition), Color.Yellow);
+            _spriteBatch.DrawString(Font, text, new Vector2(Position.X, yPosition), Color.Yellow);
         }
         public void WriteConsole()
         {
-            int lastPosition = (int)Position.X;
+            int lastPosition = (int)Position.Y;
 
             //Write shiz to screen one above another:
             foreach (var variable in Variables)
             {
                 writeToScreen(variable.Text, lastPosition);
-                lastPosition += 8;
+                lastPosition += FontSize;
             }
             foreach (var line in Lines)
             {
                 writeToScreen(line, lastPosition);
-                lastPosition += 8;
+                lastPosition += FontSize;
             }
 
             ////Restart lines:

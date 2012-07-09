@@ -29,7 +29,7 @@ namespace Sandi_s_Way
             Position = position;
             Direction = direction;
             Speed = speed;
-            StartingPosition = Position;
+            StartingPosition = position;
             Alarms = new List<Alarm>();
         }
 
