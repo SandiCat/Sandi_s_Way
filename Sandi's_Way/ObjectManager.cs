@@ -102,7 +102,7 @@ namespace Sandi_s_Way
             foreach (var key in previousState)
             {
                 if (!currentState.Contains(key))
-                    pressedKeys.Add(key);
+                    releasedKeys.Add(key);
             }
 
             //Call events:
