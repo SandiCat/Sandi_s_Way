@@ -88,6 +88,7 @@ namespace Testing
         protected override void Update(GameTime gameTime)
         {
             ObjectManager.UpdateAll();
+            Console.Update();
             base.Update(gameTime);
         }
 

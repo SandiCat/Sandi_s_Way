@@ -28,5 +28,8 @@ namespace Testing
                 this.Speed = 5;
             }
         }
+        public override void Update()
+        {
+        }
     }
 }

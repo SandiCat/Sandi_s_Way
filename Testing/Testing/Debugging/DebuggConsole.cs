@@ -14,12 +14,44 @@ namespace Testing
 {
     public class DebuggConsole
     {
+        private class _line
+        {
+            public string Text;
+            public static int DefaultTime = 90;
+            public int Time;
+            private DebuggConsole _console;
+
+            public _line(string text, DebuggConsole console)
+            {
+                Text = text;
+                Time = DefaultTime;
+                _console = console;
+            }
+
+            public void Write(float yPosition)
+            {
+                _console._spriteBatch.DrawString(_console.Font, Text, new Vector2(_console.Position.X, yPosition), Color.Yellow);
+            }
+            public void Update()
+            {
+                Time--;
+            }
+
+            public bool ShouldIRemove()
+            {
+                if (Time == 0)
+                    return true;
+                else
+                    return false;
+            }
+        }
+
         public Vector2 Position;
         public SpriteFont Font;
         public const int FontSize = 8;
         SpriteBatch _spriteBatch;
 
-        public List<string> Lines = new List<string>();
+        private List<_line> _lines = new List<_line>();
         public List<DebuggVariable> Variables = new List<DebuggVariable>();
 
         public DebuggConsole(SpriteBatch spriteBatch, Vector2 position)
@@ -30,12 +62,9 @@ namespace Testing
         
         public void WriteLine(string text)
         {
-            Lines.Add(text);
+            _lines.Add(new _line(text, this));
         }
-        private void writeToScreen(string text, int yPosition)
-        {
-            _spriteBatch.DrawString(Font, text, new Vector2(Position.X, yPosition), Color.Yellow);
-        }
+        
         public void WriteConsole()
         {
             int lastPosition = (int)Position.Y;
@@ -43,17 +72,31 @@ namespace Testing
             //Write shiz to screen one above another:
             foreach (var variable in Variables)
             {
-                writeToScreen(variable.Text, lastPosition);
+                _spriteBatch.DrawString(Font, variable.Text, new Vector2(Position.X, lastPosition), Color.Yellow);
                 lastPosition += FontSize;
             }
-            foreach (var line in Lines)
+            foreach (var line in _lines)
             {
-                writeToScreen(line, lastPosition);
+                line.Write(lastPosition);
                 lastPosition += FontSize;
+            }
+        }
+        public void Update()
+        {
+            List<_line> linesToRemove = new List<_line>();
+
+            foreach (var line in _lines)
+            {
+                line.Update();
+
+                if (line.ShouldIRemove())
+                    linesToRemove.Add(line);
             }
 
-            ////Restart lines:
-            //Lines.RemoveRange(0, Lines.Count);
+            foreach (var line in linesToRemove)
+            {
+                _lines.Remove(line);
+            }
         }
     }
 }
