@@ -18,15 +18,20 @@ namespace Sandi_s_Way
     {
         static public List<GameObject> Objects;
 
-        static private Keys[] previousState;
-        static private Keys[] currentState;
+        //Keyboard state variables:
+        static private List<Keys> previousState;
+        static private List<Keys> currentState;
+        static private List<Keys> pressedKeys;
+        static private List<Keys> releasedKeys;
 
         public static void Initialize() //since this is a static object
         {
             Objects = new List<GameObject>();
 
-            previousState = new KeyboardState();
-            currentState = new KeyboardState();
+            previousState = new List<Keys>();
+            currentState = new List<Keys>();
+            pressedKeys = new List<Keys>();
+            releasedKeys = new List<Keys>();
         }
 
         static public void Create(GameObject obj)
@@ -51,16 +56,13 @@ namespace Sandi_s_Way
         }
 
         static public void UpdateAll()
-        {
-            //Move the objects:
+        {    
             foreach (var obj in Objects)
             {
+                //Move the objects:
                 obj.Position += obj.Direction * obj.Speed;
-            }
-
-            //Call the update event:
-            foreach (var obj in Objects)
-            {
+            
+                //Call the update event:
                 obj.Update();
             }
 
@@ -74,21 +76,44 @@ namespace Sandi_s_Way
                 if (obj.Visable)
                 {
                     obj.Sprite.Draw(obj.Position);
-                }
-            }
+                }           
 
-            //Call the draw event:
-            foreach (var obj in Objects)
-            {
+                //Call the draw event:
                 obj.Draw();
             }
         }
-
+        
         static private void ManageKeyboard()
         {
-            currentState = Keyboard.GetState().GetPressedKeys();
+            currentState = Keyboard.GetState().GetPressedKeys().ToList();
 
-            previousState = Keyboard.GetState().GetPressedKeys(); 
+            //Clear lists:
+            pressedKeys.Clear();
+            releasedKeys.Clear();
+
+            //Get pressed keys:
+            foreach (var key in currentState)
+            {
+                if (!previousState.Contains(key))
+                    pressedKeys.Add(key);
+            }
+            
+            //Get released keys:
+            foreach (var key in previousState)
+            {
+                if (!currentState.Contains(key))
+                    pressedKeys.Add(key);
+            }
+
+            //Call events:
+            foreach (var obj in Objects)
+            {
+                obj.KeyDown(currentState);
+                obj.KeyPressed(pressedKeys);
+                obj.KeyReleased(releasedKeys);
+            }            
+
+            previousState = Keyboard.GetState().GetPressedKeys().ToList(); 
         }
     } 
 }

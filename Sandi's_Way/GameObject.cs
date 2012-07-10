@@ -60,13 +60,13 @@ namespace Sandi_s_Way
         { 
         } //triggerd when the sprite is clicked
 
-        public virtual void KeyDown()
+        public virtual void KeyDown(List<Keys> keys)
         { 
-        } //triggerd IF a key is pressed (not necessarily at the moment its pressed, just during its pressed)
-        public virtual void KeyPressed()
+        } //triggerd IF a key is pressed (not at the moment its pressed, but during its pressed)
+        public virtual void KeyPressed(List<Keys> keys)
         { 
         } //triggerd WHEN a key is pressed (at the exact moment)
-        public virtual void KeyRelease()
+        public virtual void KeyReleased(List<Keys> keys)
         { 
         } //triggerd when the key is released
 
