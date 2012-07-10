@@ -16,17 +16,17 @@ namespace Testing
 {
     public class BlueObject : GameObject
     {
-        public BlueObject(Vector2 position, Vector2 direction, float speed) : base(position, direction, speed)
+        public BlueObject(Vector2 direction, float speed) : base(direction, speed)
         {
         }
 
-        public override void Create(GameObject createdObject)
-        {
-            if (createdObject == this)
-            {
-                this.Direction = new Vector2(0, 1);
-                this.Speed = 5;
-            }
-        }
+        //public override void Create(GameObject createdObject)
+        //{
+        //    if (createdObject == this)
+        //    {
+        //        this.Direction = new Vector2(0, 1);
+        //        this.Speed = 5;
+        //    }
+        //}
     }
 }

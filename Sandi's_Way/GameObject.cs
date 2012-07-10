@@ -15,21 +15,17 @@ namespace Sandi_s_Way
     abstract public class GameObject
     {
         //Object's proporties:
-        public Vector2 Position = new Vector2();
         public Vector2 Direction = new Vector2();
         public float Speed = 0;
-        public readonly Vector2 StartingPosition = new Vector2();
         public Sprite Sprite; 
         public List<Alarm> Alarms;
         public bool Visable = true;
 
         //The constructor:
-        public GameObject(Vector2 position, Vector2 direction, float speed)
+        public GameObject(Vector2 direction, float speed)
         {
-            Position = position;
             Direction = direction;
             Speed = speed;
-            StartingPosition = position;
             Alarms = new List<Alarm>();
         }
 

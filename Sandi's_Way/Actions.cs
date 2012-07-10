@@ -58,9 +58,6 @@ namespace Sandi_s_Way
         public static void JumpTo(GameObject obj)
         {
         }
-        public static void JumpToStartingPosition(GameObject obj)
-        {
-        }
 
         public static void CreateObject(GameObject obj)
         {

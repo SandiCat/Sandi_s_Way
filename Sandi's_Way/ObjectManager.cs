@@ -60,7 +60,7 @@ namespace Sandi_s_Way
             foreach (var obj in Objects)
             {
                 //Move the objects:
-                obj.Position += obj.Direction * obj.Speed;
+                obj.Sprite.Position += obj.Direction * obj.Speed;
             
                 //Call the update event:
                 obj.Update();
@@ -75,7 +75,7 @@ namespace Sandi_s_Way
             {
                 if (obj.Visable)
                 {
-                    obj.Sprite.Draw(obj.Position);
+                    obj.Sprite.Draw();
                 }           
 
                 //Call the draw event:
