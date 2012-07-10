@@ -59,6 +59,9 @@ namespace Sandi_s_Way
         public virtual void Clicked()
         { 
         } //triggerd when the sprite is clicked
+        public virtual void MouseOver()
+        {
+        } //trigerd when the mouse is over the sprite (not clicked)
 
         public virtual void KeyDown(List<Keys> keys)
         { 

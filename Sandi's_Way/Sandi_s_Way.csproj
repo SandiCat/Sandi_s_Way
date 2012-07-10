@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Actions.cs" />
     <Compile Include="Alarm.cs" />
+    <Compile Include="DirectionEnum.cs" />
     <Compile Include="GameInfo.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="ObjectManager.cs" />

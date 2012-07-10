@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
+
 
 namespace Sandi_s_Way
 {
@@ -9,6 +17,39 @@ namespace Sandi_s_Way
     {
         public static void MoveTo(GameObject obj)
         {
+        }
+        public static void MoveFixedDirection(GameObject obj, Directions direction, float speed)
+        {
+            obj.Speed = speed;
+
+            switch (direction)
+            {
+                case Directions.Up:
+                    obj.Direction = new Vector2(0, -1);
+                    break;
+                case Directions.Down:
+                    obj.Direction = new Vector2(0, 1);
+                    break;
+                case Directions.Left:
+                    obj.Direction = new Vector2(-1, 0);
+                    break;
+                case Directions.Right:
+                    obj.Direction = new Vector2(1, 0);
+                    break;
+
+                case Directions.UpLeft:
+                    obj.Direction = new Vector2(-1, -1);
+                    break;
+                case Directions.UpRight:
+                    obj.Direction = new Vector2(1, -1);
+                    break;
+                case Directions.DownLeft:
+                    obj.Direction = new Vector2(-1, 1);
+                    break;
+                case Directions.DownRight:
+                    obj.Direction = new Vector2(1, 1);
+                    break;
+            }
         }
         public static void MoveDirection(GameObject obj)
         {
