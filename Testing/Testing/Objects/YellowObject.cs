@@ -19,5 +19,19 @@ namespace Testing
         public YellowObject(Vector2 direction, float speed) : base(direction, speed)
         {
         }
+
+        public override void Create(GameObject createdObject)
+        {
+            if (createdObject == this)
+            {
+                Sprite.Origin = new Vector2(32, 32);
+                Sprite.Rotation = MathHelper.ToRadians(45);
+            }
+        }
+
+        public override void Update()
+        {
+            Sprite.Rotation += MathHelper.ToRadians(1.0f);
+        }
     }
 }

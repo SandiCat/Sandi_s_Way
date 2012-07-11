@@ -15,7 +15,6 @@ namespace Sandi_s_Way
     public class Sprite //keeps an image and draws it
     {
         private Texture2D _image;
-        public Rectangle Rectangle;
 
         public float Scale = 1.0f;
         public float Rotation = 0.0f;
@@ -25,7 +24,6 @@ namespace Sandi_s_Way
         public Sprite(Texture2D image, Vector2 position, Vector2 origin, float roatation, float scale)
         {
             _image = image;
-            Rectangle = new Rectangle((int)position.X, (int)position.Y, image.Width, image.Height);
 
             Scale = scale;
             Rotation = roatation;
@@ -35,7 +33,6 @@ namespace Sandi_s_Way
         public Sprite(Texture2D image, Vector2 position)
         {
             _image = image;
-            Rectangle = new Rectangle((int)position.X, (int)position.Y, image.Width, image.Height);
 
             Position = position;
         }
@@ -43,6 +40,30 @@ namespace Sandi_s_Way
         public void Draw()
         {
             GameInfo.RefSpriteBatch.Draw(_image, Position, null, Color.White, Rotation, Origin, Scale, SpriteEffects.None, 0.0f);
+        }
+
+        public Matrix GetMatrix()
+        {
+            Matrix matrix =
+                Matrix.CreateTranslation(-Origin.X, -Origin.Y, 0)
+                * Matrix.CreateRotationZ(Rotation)
+                * Matrix.CreateScale(Scale)
+                * Matrix.CreateTranslation(Position.X, Position.Y, 0);
+
+            return matrix;
+        }
+        public Rectangle GetRectangle()
+        {
+            Rectangle rectangle = new Rectangle((int)Position.X, (int)Position.Y, _image.Width, _image.Height);
+            
+            return rectangle;
+        }
+        public Color[] GetColorData()
+        {
+            Color[] colorData = new Color[_image.Width * _image.Height];
+            _image.GetData(colorData);
+
+            return colorData;
         }
     }
 }

@@ -56,14 +56,6 @@ namespace Testing
             DebuggConsoleFont = Content.Load<SpriteFont>("DebuggConsoleFont");
             Console.Font = DebuggConsoleFont;
 
-            //Initialize the testing objects:
-            Blue = new BlueObject(new Vector2(0, 0), 0);
-            Red = new RedObject(new Vector2(0, 0), 0);
-            Yellow = new YellowObject(new Vector2(0, 0), 0);
-            ObjectManager.Create(Blue);
-            ObjectManager.Create(Red);
-            ObjectManager.Create(Yellow);
-
             base.Initialize();
         }
 
@@ -75,10 +67,20 @@ namespace Testing
             GameInfo.RefDeviceManager = graphics;
             GameInfo.RefContent = Content;
 
+            //Initialize the testing objects:
+            Blue = new BlueObject(new Vector2(0, 0), 0);
+            Red = new RedObject(new Vector2(0, 0), 0);
+            Yellow = new YellowObject(new Vector2(0, 0), 0);
+
             //Load the testing object sprites:
             Blue.Sprite = TextureContainer.AddTextureAndReturnSprite("BlueSquare", new Vector2(0, 0));
             Red.Sprite = TextureContainer.AddTextureAndReturnSprite("RedSquare", new Vector2(64, 0));
-            Yellow.Sprite = TextureContainer.AddTextureAndReturnSprite("YellowSquare", new Vector2(64 + 64, 0));
+            Yellow.Sprite = TextureContainer.AddTextureAndReturnSprite("YellowSquare", new Vector2(64 + 64 + 32, 32));
+
+            //Create testing objects:
+            ObjectManager.Create(Blue);
+            ObjectManager.Create(Red);
+            ObjectManager.Create(Yellow);
         }
 
         protected override void UnloadContent()
