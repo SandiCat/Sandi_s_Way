@@ -15,85 +15,46 @@ namespace Sandi_s_Way
 {
     public static class Actions //a big ol' colection of actions
     {
-        public static void MoveTo(GameObject obj)
+        public static void MoveTowards(GameObject obj, Vector2 point, float speed)
         {
-        }
-        public static void MoveFixedDirection(GameObject obj, Directions direction, float speed)
-        {
+            point.Normalize();
+            obj.Direction = point;
             obj.Speed = speed;
-
-            switch (direction)
-            {
-                case Directions.Up:
-                    obj.Direction = new Vector2(0, -1);
-                    break;
-                case Directions.Down:
-                    obj.Direction = new Vector2(0, 1);
-                    break;
-                case Directions.Left:
-                    obj.Direction = new Vector2(-1, 0);
-                    break;
-                case Directions.Right:
-                    obj.Direction = new Vector2(1, 0);
-                    break;
-
-                case Directions.UpLeft:
-                    obj.Direction = new Vector2(-1, -1);
-                    break;
-                case Directions.UpRight:
-                    obj.Direction = new Vector2(1, -1);
-                    break;
-                case Directions.DownLeft:
-                    obj.Direction = new Vector2(-1, 1);
-                    break;
-                case Directions.DownRight:
-                    obj.Direction = new Vector2(1, 1);
-                    break;
-                case Directions.None:
-                    obj.Direction = new Vector2(0, 0);
-                    break;
-            }
-        }
-        public static void StepFixedDirection(GameObject obj, Directions direction)
+        }      
+        public static void MoveAngle(GameObject obj, float angle, float speed)
         {
-            switch (direction)
-            {
-                case Directions.Up:
-                    obj.Sprite.Position += new Vector2(0, -1);
-                    break;
-                case Directions.Down:
-                    obj.Sprite.Position += new Vector2(0, 1);
-                    break;
-                case Directions.Left:
-                    obj.Sprite.Position += new Vector2(-1, 0);
-                    break;
-                case Directions.Right:
-                    obj.Sprite.Position += new Vector2(1, 0);
-                    break;
+            if (angle == null) return;
 
-                case Directions.UpLeft:
-                    obj.Sprite.Position += new Vector2(-1, -1);
-                    break;
-                case Directions.UpRight:
-                    obj.Sprite.Position += new Vector2(1, -1);
-                    break;
-                case Directions.DownLeft:
-                    obj.Sprite.Position += new Vector2(-1, 1);
-                    break;
-                case Directions.DownRight:
-                    obj.Sprite.Position += new Vector2(1, 1);
-                    break;
-                case Directions.None:
-                    obj.Sprite.Position += new Vector2(0, 0);
-                    break;
-            }
-        }
-        public static void MoveDirection(GameObject obj)
-        {
-        }
+            Vector2 up = new Vector2(0, -1);
+            Matrix rotationMat = Matrix.CreateRotationZ((float)angle);
+            Vector2 direction = Vector2.Transform(up, rotationMat);
 
-        public static void JumpTo(GameObject obj)
+            obj.Direction = direction;
+            obj.Speed = speed;
+        }
+        public static void StopMovment(GameObject obj)
         {
+            obj.Direction = Vector2.Zero;
+            obj.Speed = 0;
+        }
+        public static void StepTowards(GameObject obj, Vector2 point, float distance)
+        {
+            point.Normalize();
+            obj.Sprite.Position += point * distance;
+        }
+        public static void StepAngle(GameObject obj, float angle, float distance)
+        {
+            if (angle == null) return;
+
+            Vector2 up = new Vector2(0, -1);
+            Matrix rotationMat = Matrix.CreateRotationZ((float)angle);
+            Vector2 direction = Vector2.Transform(up, rotationMat);
+
+            obj.Sprite.Position += direction * distance;
+        } 
+        public static void JumpTo(GameObject obj, Vector2 point)
+        {
+            obj.Sprite.Position = point;
         }
 
         public static void CreateObject(GameObject obj)

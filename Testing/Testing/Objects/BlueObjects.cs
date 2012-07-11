@@ -16,22 +16,41 @@ namespace Testing
 {
     public class BlueObject : GameObject
     {
-        float speed = 3;
-
         public BlueObject(Vector2 direction, float speed) : base(direction, speed)
         {
         }
 
         public override void KeyDown(List<Keys> keys)
         {
-            if(keys.Contains(Keys.Left))
-                Actions.StepFixedDirection(this, Directions.Left);
+            //StepingAngle:
+            if (keys.Contains(Keys.Left))
+                Actions.StepAngle(this, Directions.Left, 3);
             if (keys.Contains(Keys.Right))
-                Actions.StepFixedDirection(this, Directions.Right);
+                Actions.StepAngle(this, Directions.Right, 3);
             if (keys.Contains(Keys.Up))
-                Actions.StepFixedDirection(this, Directions.Up);
+                Actions.StepAngle(this, Directions.Up, 3);
             if (keys.Contains(Keys.Down))
-                Actions.StepFixedDirection(this, Directions.Down);
+                Actions.StepAngle(this, Directions.Down, 3);
+
+            ////MovingAngle:
+            //if (keys.Contains(Keys.Left))
+            //    Actions.MoveAngle(this, Directions.Left, 3);
+            //if (keys.Contains(Keys.Right))
+            //    Actions.MoveAngle(this, Directions.Right, 3);
+            //if (keys.Contains(Keys.Up))
+            //    Actions.MoveAngle(this, Directions.Up, 3);
+            //if (keys.Contains(Keys.Down))
+            //    Actions.MoveAngle(this, Directions.Down, 3);
+
+            ////Steping towards:
+            //Vector2 somePoint = new Vector2(300, 300);
+            //if (keys.Contains(Keys.Space))
+            //    Actions.StepTowards(this, somePoint, 10);
+
+            ////Moving towards:
+            //Vector2 someOtherPoint = new Vector2(400, 300);
+            //if (keys.Contains(Keys.Space))
+            //    Actions.MoveTowards(this, someOtherPoint, 3);
         }
     }
 }
