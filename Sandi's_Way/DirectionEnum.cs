@@ -15,6 +15,7 @@ namespace Sandi_s_Way
     public enum Directions
     {
         Up, Down, Left, Right,
-        UpLeft, UpRight, DownLeft, DownRight
+        UpLeft, UpRight, DownLeft, DownRight,
+        None
     }
 }

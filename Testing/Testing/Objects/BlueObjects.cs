@@ -16,17 +16,22 @@ namespace Testing
 {
     public class BlueObject : GameObject
     {
+        float speed = 3;
+
         public BlueObject(Vector2 direction, float speed) : base(direction, speed)
         {
         }
 
-        //public override void Create(GameObject createdObject)
-        //{
-        //    if (createdObject == this)
-        //    {
-        //        this.Direction = new Vector2(0, 1);
-        //        this.Speed = 5;
-        //    }
-        //}
+        public override void KeyDown(List<Keys> keys)
+        {
+            if(keys.Contains(Keys.Left))
+                Actions.StepFixedDirection(this, Directions.Left);
+            if (keys.Contains(Keys.Right))
+                Actions.StepFixedDirection(this, Directions.Right);
+            if (keys.Contains(Keys.Up))
+                Actions.StepFixedDirection(this, Directions.Up);
+            if (keys.Contains(Keys.Down))
+                Actions.StepFixedDirection(this, Directions.Down);
+        }
     }
 }

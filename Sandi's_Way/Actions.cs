@@ -49,6 +49,43 @@ namespace Sandi_s_Way
                 case Directions.DownRight:
                     obj.Direction = new Vector2(1, 1);
                     break;
+                case Directions.None:
+                    obj.Direction = new Vector2(0, 0);
+                    break;
+            }
+        }
+        public static void StepFixedDirection(GameObject obj, Directions direction)
+        {
+            switch (direction)
+            {
+                case Directions.Up:
+                    obj.Sprite.Position += new Vector2(0, -1);
+                    break;
+                case Directions.Down:
+                    obj.Sprite.Position += new Vector2(0, 1);
+                    break;
+                case Directions.Left:
+                    obj.Sprite.Position += new Vector2(-1, 0);
+                    break;
+                case Directions.Right:
+                    obj.Sprite.Position += new Vector2(1, 0);
+                    break;
+
+                case Directions.UpLeft:
+                    obj.Sprite.Position += new Vector2(-1, -1);
+                    break;
+                case Directions.UpRight:
+                    obj.Sprite.Position += new Vector2(1, -1);
+                    break;
+                case Directions.DownLeft:
+                    obj.Sprite.Position += new Vector2(-1, 1);
+                    break;
+                case Directions.DownRight:
+                    obj.Sprite.Position += new Vector2(1, 1);
+                    break;
+                case Directions.None:
+                    obj.Sprite.Position += new Vector2(0, 0);
+                    break;
             }
         }
         public static void MoveDirection(GameObject obj)
