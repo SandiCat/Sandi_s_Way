@@ -14,7 +14,7 @@ namespace Sandi_s_Way
 {
     public class Sprite //keeps an image and draws it
     {
-        private Texture2D _image;
+        public Texture2D Image;
 
         public float Scale = 1.0f;
         public float Rotation = 0.0f;
@@ -23,7 +23,7 @@ namespace Sandi_s_Way
 
         public Sprite(Texture2D image, Vector2 position, Vector2 origin, float roatation, float scale)
         {
-            _image = image;
+            Image = image;
 
             Scale = scale;
             Rotation = roatation;
@@ -32,14 +32,14 @@ namespace Sandi_s_Way
         }
         public Sprite(Texture2D image, Vector2 position)
         {
-            _image = image;
+            Image = image;
 
             Position = position;
         }
 
         public void Draw()
         {
-            GameInfo.RefSpriteBatch.Draw(_image, Position, null, Color.White, Rotation, Origin, Scale, SpriteEffects.None, 0.0f);
+            GameInfo.RefSpriteBatch.Draw(Image, Position, null, Color.White, Rotation, Origin, Scale, SpriteEffects.None, 0.0f);
         }
 
         public Matrix GetMatrix()
@@ -54,14 +54,35 @@ namespace Sandi_s_Way
         }
         public Rectangle GetRectangle()
         {
-            Rectangle rectangle = new Rectangle((int)Position.X, (int)Position.Y, _image.Width, _image.Height);
-            
-            return rectangle;
+            Rectangle rectangle = new Rectangle((int)Position.X, (int)Position.Y, Image.Width, Image.Height);
+            Matrix transform = GetMatrix();
+
+            // Get all four corners in local space
+            Vector2 leftTop = new Vector2(rectangle.Left, rectangle.Top);
+            Vector2 rightTop = new Vector2(rectangle.Right, rectangle.Top);
+            Vector2 leftBottom = new Vector2(rectangle.Left, rectangle.Bottom);
+            Vector2 rightBottom = new Vector2(rectangle.Right, rectangle.Bottom);
+
+            // Transform all four corners into work space
+            leftTop = Vector2.Transform(leftTop, transform);
+            rightTop = Vector2.Transform(rightTop, transform);
+            leftBottom = Vector2.Transform(leftBottom, transform);
+            rightBottom = Vector2.Transform(rightBottom, transform);
+
+            // Find the minimum and maximum extents of the rectangle in world space
+            Vector2 min = Vector2.Min(Vector2.Min(leftTop, rightTop),
+                                      Vector2.Min(leftBottom, rightBottom));
+            Vector2 max = Vector2.Max(Vector2.Max(leftTop, rightTop),
+                                      Vector2.Max(leftBottom, rightBottom));
+
+            // Return that as a rectangle
+            return new Rectangle((int)min.X, (int)min.Y,
+                                 (int)(max.X - min.X), (int)(max.Y - min.Y));
         }
         public Color[] GetColorData()
         {
-            Color[] colorData = new Color[_image.Width * _image.Height];
-            _image.GetData(colorData);
+            Color[] colorData = new Color[Image.Width * Image.Height];
+            Image.GetData(colorData);
 
             return colorData;
         }

@@ -48,7 +48,7 @@ namespace Sandi_s_Way
         { 
         } //triggerd when an alarm goes off
 
-        public virtual void Collision()
+        public virtual void Collision(List<GameObject> collisions)
         { 
         } //triggerd when ObjectManager has detected an collision
 

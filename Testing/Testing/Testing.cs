@@ -74,13 +74,13 @@ namespace Testing
 
             //Load the testing object sprites:
             Blue.Sprite = TextureContainer.AddTextureAndReturnSprite("BlueSquare", new Vector2(0, 0));
-            Red.Sprite = TextureContainer.AddTextureAndReturnSprite("RedSquare", new Vector2(64, 0));
-            Yellow.Sprite = TextureContainer.AddTextureAndReturnSprite("YellowSquare", new Vector2(64 + 64 + 32, 32));
+            Red.Sprite = TextureContainer.AddTextureAndReturnSprite("RedSquare", new Vector2(100, 100));
+            Yellow.Sprite = TextureContainer.AddTextureAndReturnSprite("YellowSquare", new Vector2(300, 100));
 
             //Create testing objects:
-            ObjectManager.Create(Blue);
             ObjectManager.Create(Red);
             ObjectManager.Create(Yellow);
+            ObjectManager.Create(Blue); //blue is created last so its drawn on the top
         }
 
         protected override void UnloadContent()
