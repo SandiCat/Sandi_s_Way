@@ -86,5 +86,26 @@ namespace Sandi_s_Way
 
             return colorData;
         }
+        public Vector2 GetTopLeftCorner()
+        {
+            return Position - Origin;
+        }
+
+        public void DrawRectangle() //for debugging
+        {
+            Rectangle rectangle = GetRectangle();
+
+            Texture2D RectangleTexture = new Texture2D(GameInfo.RefDevice, rectangle.Width, rectangle.Height);
+
+            Color[] colorArray = new Color[rectangle.Width * rectangle.Height];
+            for (int i = 0; i < (rectangle.Width * rectangle.Height); i++) //fill colorArray with colors
+            {
+                colorArray[i] = Color.PeachPuff; //do you have anything against peach puff? DO YOU?!
+            }
+
+            RectangleTexture.SetData(colorArray);
+
+            GameInfo.RefSpriteBatch.Draw(RectangleTexture, rectangle, Color.White);
+        }
     }
 }
