@@ -109,6 +109,9 @@
   <ItemGroup>
     <Compile Include="Debugging\DebuggConsole.cs" />
     <Compile Include="Debugging\DebuggVariable.cs" />
+    <Compile Include="Objects\Cross.cs" />
+    <Compile Include="Objects\RotatingCross.cs" />
+    <Compile Include="Objects\SmallDot.cs" />
     <Compile Include="Objects\RedObject.cs" />
     <Compile Include="Objects\BlueObjects.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

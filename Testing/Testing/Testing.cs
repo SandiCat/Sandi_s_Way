@@ -25,6 +25,11 @@ namespace Testing
         static public RedObject Red;
         static public YellowObject Yellow;
 
+        //Collision testing objects:
+        static public Cross Cross;
+        static public RotatingCross RotatingCross;
+        static public SmallDot Dot;
+
         //The debug console:
         public static DebuggConsole Console;
         SpriteFont DebuggConsoleFont;
@@ -72,15 +77,30 @@ namespace Testing
             Red = new RedObject(new Vector2(0, 0), 0);
             Yellow = new YellowObject(new Vector2(0, 0), 0);
 
+            //Initialize the collision testing objects:
+            Cross = new Cross(new Vector2(0, 0), 0);
+            RotatingCross = new RotatingCross(new Vector2(0, 0), 0);
+            Dot = new SmallDot(new Vector2(0, 0), 0);
+
             //Load the testing object sprites:
             Blue.Sprite = TextureContainer.AddTextureAndReturnSprite("BlueSquare", new Vector2(0, 0));
             Red.Sprite = TextureContainer.AddTextureAndReturnSprite("RedSquare", new Vector2(100, 100));
             Yellow.Sprite = TextureContainer.AddTextureAndReturnSprite("YellowSquare", new Vector2(300, 100));
 
-            //Create testing objects:
+            //Initialize the collision testing objects:
+            Cross.Sprite = TextureContainer.AddTextureAndReturnSprite("Cross", new Vector2(300, 200));
+            RotatingCross.Sprite = new Sprite(TextureContainer.Textures["Cross"], new Vector2(250, 200 + 32));
+            Dot.Sprite = TextureContainer.AddTextureAndReturnSprite("SmallSquare", new Vector2(10, 90));
+
+            //Create the testing objects:
             ObjectManager.Create(Red);
             ObjectManager.Create(Yellow);
             ObjectManager.Create(Blue); //blue is created last so its drawn on the top
+
+            //Create the collison testing objects:
+            ObjectManager.Create(Cross);
+            ObjectManager.Create(RotatingCross);
+            ObjectManager.Create(Dot);
         }
 
         protected override void UnloadContent()

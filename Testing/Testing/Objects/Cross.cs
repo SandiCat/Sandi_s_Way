@@ -14,9 +14,9 @@ using Sandi_s_Way;
 
 namespace Testing
 {
-    public class BlueObject : GameObject
+    public class Cross : GameObject
     {
-        public BlueObject(Vector2 direction, float speed) : base(direction, speed)
+        public Cross(Vector2 direction, float speed) : base(direction, speed)
         {
         }
     }
