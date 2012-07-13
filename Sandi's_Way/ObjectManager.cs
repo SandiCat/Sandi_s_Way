@@ -78,6 +78,12 @@ namespace Sandi_s_Way
                 {
                     obj.IntersectBoundary();
                 }
+
+                //Update alarms and call their events
+                foreach (var alarm in obj.Alarms)
+                {
+                    if (alarm.Value.IsDone()) obj.Alarm(alarm.Key);
+                }
             }
 
             //Manage input:
@@ -192,6 +198,7 @@ namespace Sandi_s_Way
                 }
             }
         }
+        
 
         private static bool IntersectPixels(Sprite spriteA, Sprite spriteB)
         {

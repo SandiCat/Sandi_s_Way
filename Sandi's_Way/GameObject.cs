@@ -18,7 +18,7 @@ namespace Sandi_s_Way
         public Vector2 Direction = new Vector2();
         public float Speed = 0;
         public Sprite Sprite; 
-        public List<Alarm> Alarms;
+        public Dictionary<string, Alarm> Alarms;
         public bool Visable = true;
 
         //The constructor:
@@ -26,7 +26,7 @@ namespace Sandi_s_Way
         {
             Direction = direction;
             Speed = speed;
-            Alarms = new List<Alarm>();
+            Alarms = new Dictionary<string, Alarm>();
         }
 
         //EVENTS: (they are all virtual instead of abstarct because you dont have to implement all of them)
@@ -44,7 +44,7 @@ namespace Sandi_s_Way
         { 
         } //triggerd at detruction of an object
 
-        public virtual void Alarm()
+        public virtual void Alarm(string name)
         { 
         } //triggerd when an alarm goes off
 

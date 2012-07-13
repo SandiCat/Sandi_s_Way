@@ -18,6 +18,7 @@ namespace Testing
     {
         public RedObject(Vector2 direction, float speed) : base(direction, speed)
         {
+            Alarms.Add("testAlarm", new Alarm());
         }
 
         public override void Create(GameObject createdObject)
@@ -25,10 +26,19 @@ namespace Testing
             if (createdObject == this)
             {
                 Testing.Console.WriteLine("A red object has been created");
+
+                Alarms["testAlarm"].Restart(300);
             }
         }
         public override void Update()
         {
+        }
+        public override void Alarm(string name)
+        {
+            if (name == "testAlarm")
+            {
+                Testing.Console.WriteLine("Alarm \"testAlarm\" has gone of");
+            }
         }
     }
 }

@@ -61,6 +61,7 @@ namespace Sandi_s_Way
         }
         public static void DestroyObject(GameObject obj)
         {
+            ObjectManager.Objects.Remove(obj);
         }
 
         public static void ChangeObject(GameObject obj)
