@@ -56,13 +56,14 @@ namespace Testing
         {
             if (collisions.Contains(Testing.Yellow))
             {
-                Testing.Console.WriteLine("Blue object collided with yellow object");
+                Testing.Console.UniqueLine("Blue object collided with yellow object");
             }
 
             if (collisions.Contains(Testing.Red))
             {
-                Testing.Console.WriteLine("Blue object collided with red object");
+                Testing.Console.UniqueLine("Blue object collided with red object");
             }
         }
     }
 }
+//small change

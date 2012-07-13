@@ -56,18 +56,19 @@ namespace Testing
         {
             if (collisions.Contains(Testing.Yellow))
             {
-                Testing.Console.WriteLine("Small dot collided with yellow object");
+                Testing.Console.UniqueLine("Small dot collided with yellow object");
             }
 
             if (collisions.Contains(Testing.Red))
             {
-                Testing.Console.WriteLine("Small dot collided with red object");
+                Testing.Console.UniqueLine("Small dot collided with red object");
             }
 
             if (collisions.Contains(Testing.RotatingCross))
             {
-                Testing.Console.WriteLine("Small dot collided the spinnin' cross");
+                Testing.Console.UniqueLine("Small dot collided the spinnin' cross");
             }
         }
     }
-}
+
+    //small change
