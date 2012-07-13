@@ -54,7 +54,8 @@ namespace Sandi_s_Way
         }
         public Rectangle GetRectangle()
         {
-            Rectangle rectangle = new Rectangle((int)Position.X, (int)Position.Y, Image.Width, Image.Height);
+            Rectangle rectangle = new Rectangle(0, 0, Image.Width, Image.Height);
+            
             Matrix transform = GetMatrix();
 
             // Get all four corners in local space

@@ -30,10 +30,5 @@ namespace Testing
         public override void Update()
         {
         }
-
-        public override void Draw()
-        {
-            Sprite.DrawRectangle();
-        }
     }
 }

@@ -63,6 +63,11 @@ namespace Testing
             {
                 Testing.Console.WriteLine("Small dot collided with red object");
             }
+
+            if (collisions.Contains(Testing.RotatingCross))
+            {
+                Testing.Console.WriteLine("Small dot collided the spinnin' cross");
+            }
         }
     }
 }
