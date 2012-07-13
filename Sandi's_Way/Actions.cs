@@ -42,8 +42,6 @@ namespace Sandi_s_Way
         }
         public static void StepAngle(GameObject obj, float angle, float distance)
         {
-            if (angle == null) return;
-
             Vector2 up = new Vector2(0, -1);
             Matrix rotationMat = Matrix.CreateRotationZ((float)angle);
             Vector2 direction = Vector2.Transform(up, rotationMat);

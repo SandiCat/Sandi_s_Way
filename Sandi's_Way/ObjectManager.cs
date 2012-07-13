@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sandi_s_Way
 {
-    //creates, destroys, updates, drawes and moves gameobjects, and triggers their events
+    //creates, destroys, updates, drawes and moves gameobjects, and calls their events
     //this is static because you only need one instance
     public static class ObjectManager 
     {
@@ -64,6 +64,20 @@ namespace Sandi_s_Way
             
                 //Call the update event:
                 obj.Update();
+
+                //Call the "Outside of window" event:
+                Rectangle screenRectangle = GameInfo.RefDevice.Viewport.Bounds;
+                if (!screenRectangle.Intersects(obj.Sprite.GetRectangle()))
+                {
+                    obj.OutsideOfWindow();
+                }
+
+                //Call the "Intersect boundary" event:
+                if (screenRectangle.Intersects(obj.Sprite.GetRectangle())
+                    && !screenRectangle.Contains(obj.Sprite.GetRectangle()))
+                {
+                    obj.IntersectBoundary();
+                }
             }
 
             //Manage input:

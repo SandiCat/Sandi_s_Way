@@ -70,5 +70,13 @@ namespace Testing
                 Testing.Console.UniqueLine("Small dot collided the spinnin' cross");
             }
         }
+        public override void OutsideOfWindow()
+        {
+            Testing.Console.UniqueLine("Small dot is not in the window");
+        }
+        public override void IntersectBoundary()
+        {
+            Testing.Console.UniqueLine("Small dot is intersecting with the boundary");
+        }
     }
 }
