@@ -51,6 +51,7 @@ namespace Testing
             graphics.IsFullScreen = false;
             graphics.ApplyChanges();
             Window.Title = "Testing the Sandi's Way wrapper";
+            IsMouseVisible = true;
 
             //Initialize the static classes:
             ObjectManager.Initialize();

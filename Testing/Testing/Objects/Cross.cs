@@ -19,5 +19,18 @@ namespace Testing
         public Cross(Vector2 direction, float speed) : base(direction, speed)
         {
         }
+
+        public override void Clicked()
+        {
+            Testing.Console.UniqueLine("Cross is clicked");
+        }
+        public override void RightClicked()
+        {
+            Testing.Console.UniqueLine("Cross is right clicked");
+        }
+        public override void MouseOver()
+        {
+            Testing.Console.UniqueLine("The mouse is over the cross");
+        }
     }
 }

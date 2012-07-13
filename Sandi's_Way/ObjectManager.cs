@@ -66,11 +66,10 @@ namespace Sandi_s_Way
                 obj.Update();
             }
 
-            //Check keyboard:
+            //Manage input:
             ManageKeyboard();
-
-            //Check collisions:
             ManageCollisions();
+            ManageMouse();
         }
         static public void DrawAll()
         {
@@ -139,6 +138,44 @@ namespace Sandi_s_Way
                 }
                 
                 obj1.Collision(collisions);
+            }
+        }
+        static private void ManageMouse()
+        {
+            //Get mouse info:
+            MouseState mouse = Mouse.GetState();
+            Vector2 position = new Vector2(mouse.X, mouse.Y);
+            
+            //The way I'll check mouse clicks is I'll create a small sprite and check collision.
+
+            //Make a little texture for the mouse sprite (this wont be drawn):
+            Texture2D texture = new Texture2D(GameInfo.RefDevice, 1, 1);
+            texture.SetData(new Color[] { Color.Black });
+
+            //Make a sprite where the mouse is:
+            Sprite point = new Sprite(texture, position);  
+
+            //Check collisions with sprite:
+            foreach (var obj in Objects)
+            {
+                if (obj.Sprite.GetRectangle().Intersects(point.GetRectangle()))
+                {
+                    if (IntersectPixels(obj.Sprite, point))
+                    {
+                        if (mouse.LeftButton == ButtonState.Pressed)
+                        {
+                            obj.Clicked();
+                        }
+                        else if (mouse.RightButton == ButtonState.Pressed)
+                        {
+                            obj.RightClicked();
+                        }
+                        else
+                        {
+                            obj.MouseOver();
+                        }
+                    }
+                }
             }
         }
 
