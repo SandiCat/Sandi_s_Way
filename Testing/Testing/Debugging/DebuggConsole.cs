@@ -52,6 +52,7 @@ namespace Testing
         SpriteBatch _spriteBatch;
 
         private List<_line> _lines = new List<_line>();
+        private List<string> uniqueLines = new List<string>(); //This kind of line only exist while you are printing it
         public List<DebuggVariable> Variables = new List<DebuggVariable>();
 
         public DebuggConsole(SpriteBatch spriteBatch, Vector2 position)
@@ -64,6 +65,13 @@ namespace Testing
         {
             _lines.Add(new _line(text, this));
         }
+        public void UniqueLine(string text)
+        {
+            if (!uniqueLines.Contains(text))
+            {
+                uniqueLines.Add(text);
+            }
+        }
         
         public void WriteConsole()
         {
@@ -75,11 +83,19 @@ namespace Testing
                 _spriteBatch.DrawString(Font, variable.Text, new Vector2(Position.X, lastPosition), Color.Yellow);
                 lastPosition += FontSize;
             }
+            foreach (var line in uniqueLines)
+            {
+                _spriteBatch.DrawString(Font, line, new Vector2(Position.X, lastPosition), Color.Yellow);
+                lastPosition += FontSize;
+            }
             foreach (var line in _lines)
             {
                 line.Write(lastPosition);
                 lastPosition += FontSize;
             }
+
+            //Clear unique lines:
+            uniqueLines.Clear();
         }
         public void Update()
         {
