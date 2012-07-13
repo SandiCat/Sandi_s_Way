@@ -55,27 +55,33 @@ namespace Sandi_s_Way
 
         public static void CreateObject(GameObject obj)
         {
+            ObjectManager.Objects.Add(obj);
         }
-        public static void CreateMovingObject(GameObject obj)
+        public static void CreateMovingObject(GameObject obj, int direction, int speed)
         {
+            ObjectManager.Objects.Add(obj);
+            MoveAngle(obj, direction, speed);
+        }
+        public static void CreateMovingObject(GameObject obj, Vector2 direction, int speed)
+        {
+            ObjectManager.Objects.Add(obj);
+            MoveTowards(obj, direction, speed);
         }
         public static void DestroyObject(GameObject obj)
         {
             ObjectManager.Objects.Remove(obj);
         }
 
-        public static void ChangeObject(GameObject obj)
+        public static void ChangeObject(GameObject originalObj, GameObject objToChangeTo)
         {
-        } //changes the object in argument to another type, but keeping some properties
-        public static void ChangeSprite(GameObject obj)
+        } 
+            //changes the object in argument to another type, but keeping some properties
+        public static void ChangeSprite(GameObject obj, Sprite sprite)
         {
+            obj.Sprite = sprite;
         }
 
         public static void PlaySound(GameObject obj)
-        {
-        }
-
-        public static void DrawSprite(GameObject obj)
         {
         }
     }
