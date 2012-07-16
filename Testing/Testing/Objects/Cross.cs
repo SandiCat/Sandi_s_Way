@@ -20,9 +20,16 @@ namespace Testing
         {
         }
 
+        public override void Create(GameObject createdObject)
+        {
+            Sprite.Origin = new Vector2(32, 32);
+            Sprite.Rotation = MathHelper.ToRadians(45);
+        }
+
         public override void Clicked()
         {
             Testing.Console.UniqueLine("Cross is clicked");
+            Sprite.Scale += 0.1f;
         }
         public override void RightClicked()
         {
@@ -31,6 +38,12 @@ namespace Testing
         public override void MouseOver()
         {
             Testing.Console.UniqueLine("The mouse is over the cross");
+        }
+
+        public override void Draw()
+        {
+            Sprite.DrawRectangle();
+            Sprite.Draw();
         }
     }
 }

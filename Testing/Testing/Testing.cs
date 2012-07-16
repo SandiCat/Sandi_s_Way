@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 using Sandi_s_Way;
+using Debugging;
 
 namespace Testing
 {
@@ -31,7 +32,7 @@ namespace Testing
         static public SmallDot Dot;
 
         //The debug console:
-        public static DebuggConsole Console;
+        public static DebugConsole Console;
         SpriteFont DebuggConsoleFont;
 
         public Testing()
@@ -58,7 +59,7 @@ namespace Testing
             TextureContainer.Textures = new Dictionary<string, Texture2D>();
 
             //Initialize the debug console:
-            Console = new DebuggConsole(spriteBatch, new Vector2(0, 0));
+            Console = new DebugConsole(spriteBatch, new Vector2(0, 0));
             DebuggConsoleFont = Content.Load<SpriteFont>("DebuggConsoleFont");
             Console.Font = DebuggConsoleFont;
 
@@ -72,6 +73,7 @@ namespace Testing
             GameInfo.RefDevice = device;
             GameInfo.RefDeviceManager = graphics;
             GameInfo.RefContent = Content;
+            GameInfo.RefConsole = Console;
 
             //Initialize the testing objects:
             Blue = new BlueObject(new Vector2(0, 0), 0);
@@ -89,7 +91,7 @@ namespace Testing
             Yellow.Sprite = TextureContainer.AddTextureAndReturnSprite("YellowSquare", new Vector2(300, 100));
 
             //Initialize the collision testing objects:
-            Cross.Sprite = TextureContainer.AddTextureAndReturnSprite("Cross", new Vector2(300, 200));
+            Cross.Sprite = TextureContainer.AddTextureAndReturnSprite("Cross", new Vector2(300 + 32, 200 + 32));
             RotatingCross.Sprite = new Sprite(TextureContainer.Textures["Cross"], new Vector2(250, 200 + 32));
             Dot.Sprite = TextureContainer.AddTextureAndReturnSprite("SmallSquare", new Vector2(10, 90));
 

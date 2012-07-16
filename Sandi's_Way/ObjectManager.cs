@@ -178,10 +178,17 @@ namespace Sandi_s_Way
             //Check collisions with sprite:
             foreach (var obj in Objects)
             {
+                point.Scale = obj.Sprite.Scale;
+                point.Rotation = obj.Sprite.Rotation;
+
                 if (obj.Sprite.GetRectangle().Intersects(point.GetRectangle()))
                 {
+                    GameInfo.RefConsole.UniqueLine("I entred rectangle check");
+
                     if (IntersectPixels(obj.Sprite, point))
                     {
+                        GameInfo.RefConsole.UniqueLine("I entred per-pixel check");
+
                         if (mouse.LeftButton == ButtonState.Pressed)
                         {
                             obj.Clicked();
@@ -199,7 +206,6 @@ namespace Sandi_s_Way
             }
         }
         
-
         private static bool IntersectPixels(Sprite spriteA, Sprite spriteB)
         {
             Matrix transformA = spriteA.GetMatrix();

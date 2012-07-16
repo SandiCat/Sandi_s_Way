@@ -92,7 +92,7 @@ namespace Sandi_s_Way
             return Position - Origin;
         }
 
-        public void DrawRectangle() //for debugging
+        public void DrawRectangle()
         {
             Rectangle rectangle = GetRectangle();
 
@@ -107,6 +107,6 @@ namespace Sandi_s_Way
             RectangleTexture.SetData(colorArray);
 
             GameInfo.RefSpriteBatch.Draw(RectangleTexture, rectangle, Color.White);
-        }
+        } //for debugging
     }
 }

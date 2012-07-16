@@ -10,18 +10,18 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
-namespace Testing
+namespace Debugging
 {
-    public class DebuggConsole
+    public class DebugConsole
     {
         private class _line
         {
             public string Text;
             public static int DefaultTime = 90;
             public int Time;
-            private DebuggConsole _console;
+            private DebugConsole _console;
 
-            public _line(string text, DebuggConsole console)
+            public _line(string text, DebugConsole console)
             {
                 Text = text;
                 Time = DefaultTime;
@@ -53,9 +53,9 @@ namespace Testing
 
         private List<_line> _lines = new List<_line>();
         private List<string> uniqueLines = new List<string>(); //This kind of line only exist while you are printing it
-        public List<DebuggVariable> Variables = new List<DebuggVariable>();
+        public List<DebugVariable> Variables = new List<DebugVariable>();
 
-        public DebuggConsole(SpriteBatch spriteBatch, Vector2 position)
+        public DebugConsole(SpriteBatch spriteBatch, Vector2 position)
         {
             Position = position;
             _spriteBatch = spriteBatch;

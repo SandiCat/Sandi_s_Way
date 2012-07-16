@@ -10,6 +10,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
+using Debugging;
+
 namespace Sandi_s_Way
 {
     //stores the basic info from game classes so that other classes can use it regardless of the game class in question
@@ -20,5 +22,7 @@ namespace Sandi_s_Way
         public static GraphicsDevice RefDevice;
         public static GraphicsDeviceManager RefDeviceManager;
         public static ContentManager RefContent;
+
+        public static DebugConsole RefConsole;
     }
 }

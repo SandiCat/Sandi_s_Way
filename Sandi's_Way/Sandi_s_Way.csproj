@@ -102,6 +102,12 @@
     <Compile Include="Sprite.cs" />
     <Compile Include="TextureContainer.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DebugConsole\DebugConsole.csproj">
+      <Project>{94339F12-F77A-44B8-B451-985F18AC8A3E}</Project>
+      <Name>DebugConsole</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
