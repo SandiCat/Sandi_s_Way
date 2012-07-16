@@ -16,8 +16,7 @@ namespace Testing
 {
     public class SmallDot : GameObject
     {
-        public SmallDot(Vector2 direction, float speed)
-            : base(direction, speed)
+        public SmallDot(Vector2 position) : base(position)
         {
         }
 

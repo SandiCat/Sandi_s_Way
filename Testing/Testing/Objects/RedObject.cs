@@ -16,7 +16,8 @@ namespace Testing
 {
     public class RedObject : GameObject
     {
-        public RedObject(Vector2 direction, float speed) : base(direction, speed)
+        public RedObject(Vector2 position)
+            : base(position)
         {
             Alarms.Add("testAlarm", new Alarm());
         }

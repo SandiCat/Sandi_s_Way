@@ -57,6 +57,7 @@ namespace Testing
             //Initialize the static classes:
             ObjectManager.Initialize();
             TextureContainer.Textures = new Dictionary<string, Texture2D>();
+            TextureContainer.DefaultTextures = new Dictionary<Type, Texture2D>();
 
             //Initialize the debug console:
             Console = new DebugConsole(spriteBatch, new Vector2(0, 0));
@@ -75,32 +76,26 @@ namespace Testing
             GameInfo.RefContent = Content;
             GameInfo.RefConsole = Console;
 
-            //Initialize the testing objects:
-            Blue = new BlueObject(new Vector2(0, 0), 0);
-            Red = new RedObject(new Vector2(0, 0), 0);
-            Yellow = new YellowObject(new Vector2(0, 0), 0);
+            //Initialize default sprites:
+            TextureContainer.DefaultTextures[typeof(BlueObject)] = TextureContainer.AddTextureAndReturn("BlueSquare");
+            TextureContainer.DefaultTextures[typeof(RedObject)] = TextureContainer.AddTextureAndReturn("RedSquare");
+            TextureContainer.DefaultTextures[typeof(YellowObject)] = TextureContainer.AddTextureAndReturn("YellowSquare");
+            TextureContainer.DefaultTextures[typeof(Cross)] = TextureContainer.AddTextureAndReturn("Cross");
+            TextureContainer.DefaultTextures[typeof(RotatingCross)] = TextureContainer.Textures["Cross"]; //it has the same texture as normal cross
+            TextureContainer.DefaultTextures[typeof(SmallDot)] = TextureContainer.AddTextureAndReturn("SmallSquare");
 
-            //Initialize the collision testing objects:
-            Cross = new Cross(new Vector2(0, 0), 0);
-            RotatingCross = new RotatingCross(new Vector2(0, 0), 0);
-            Dot = new SmallDot(new Vector2(0, 0), 0);
+            //Initialize the objects:
+            Blue = new BlueObject(new Vector2(0, 0));
+            Red = new RedObject(new Vector2(300, 300));
+            Yellow = new YellowObject(new Vector2(64 + 64 + 32, 32));
+            Cross = new Cross(new Vector2(64 + 32, 100 + 32));
+            RotatingCross = new RotatingCross(new Vector2(64 + 64 + 32, 100 + 32));
+            Dot = new SmallDot(new Vector2(0, 64));
 
-            //Load the testing object sprites:
-            Blue.Sprite = TextureContainer.AddTextureAndReturnSprite("BlueSquare", new Vector2(0, 0));
-            Red.Sprite = TextureContainer.AddTextureAndReturnSprite("RedSquare", new Vector2(100, 100));
-            Yellow.Sprite = TextureContainer.AddTextureAndReturnSprite("YellowSquare", new Vector2(300, 100));
-
-            //Initialize the collision testing objects:
-            Cross.Sprite = TextureContainer.AddTextureAndReturnSprite("Cross", new Vector2(300 + 32, 200 + 32));
-            RotatingCross.Sprite = new Sprite(TextureContainer.Textures["Cross"], new Vector2(250, 200 + 32));
-            Dot.Sprite = TextureContainer.AddTextureAndReturnSprite("SmallSquare", new Vector2(10, 90));
-
-            //Create the testing objects:
+            //Create the objects:
+            ObjectManager.Create(Blue);
             ObjectManager.Create(Red);
-            ObjectManager.Create(Yellow);
-            ObjectManager.Create(Blue); //blue is created last so its drawn on the top
-
-            //Create the collison testing objects:
+            ObjectManager.Create(Yellow);           
             ObjectManager.Create(Cross);
             ObjectManager.Create(RotatingCross);
             ObjectManager.Create(Dot);

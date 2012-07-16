@@ -16,7 +16,7 @@ namespace Testing
 {
     public class YellowObject : GameObject
     {
-        public YellowObject(Vector2 direction, float speed) : base(direction, speed)
+        public YellowObject(Vector2 position) : base(position)
         {
         }
 

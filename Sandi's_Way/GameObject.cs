@@ -21,12 +21,11 @@ namespace Sandi_s_Way
         public Dictionary<string, Alarm> Alarms;
         public bool Visable = true;
 
-        //The constructor:
-        public GameObject(Vector2 direction, float speed)
+        
+        public GameObject(Vector2 position)
         {
-            Direction = direction;
-            Speed = speed;
             Alarms = new Dictionary<string, Alarm>();
+            Sprite = new Sprite(TextureContainer.DefaultTextures[this.GetType()], position);
         }
 
         //EVENTS: (they are all virtual instead of abstarct because you dont have to implement all of them)

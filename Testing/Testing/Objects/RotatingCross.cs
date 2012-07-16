@@ -16,7 +16,8 @@ namespace Testing
 {
     public class RotatingCross : GameObject
     {
-        public RotatingCross(Vector2 direction, float speed) : base(direction, speed)
+        public RotatingCross(Vector2 position)
+            : base(position)
         {
         }
         
