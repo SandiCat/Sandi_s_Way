@@ -92,7 +92,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Actions.cs" />
     <Compile Include="Alarm.cs" />
     <Compile Include="Directions.cs" />
     <Compile Include="GameInfo.cs" />

@@ -271,6 +271,11 @@ namespace Sandi_s_Way
             // No intersection found
             return false;
         } //this code was taken from a microsoft app hub turorial
+
+        public static GameObject GetLastCreated()
+        {
+            return Objects.Last();
+        }
     } 
 }
 
