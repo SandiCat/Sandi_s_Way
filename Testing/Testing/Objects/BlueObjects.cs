@@ -20,38 +20,42 @@ namespace Testing
             : base(position)
         {
         }
+        public BlueObject()
+            : base()
+        {
+        }
 
         public override void KeyDown(List<Keys> keys)
         {
             //StepingAngle:
             if (keys.Contains(Keys.A))
-                Actions.StepAngle(this, Directions.Left, 3);
+                StepAngle(Directions.Left, 3);
             if (keys.Contains(Keys.D))
-                Actions.StepAngle(this, Directions.Right, 3);
+                StepAngle(Directions.Right, 3);
             if (keys.Contains(Keys.W))
-                Actions.StepAngle(this, Directions.Up, 3);
+                StepAngle(Directions.Up, 3);
             if (keys.Contains(Keys.S))
-                Actions.StepAngle(this, Directions.Down, 3);
+                StepAngle(Directions.Down, 3);
 
             ////MovingAngle:
             //if (keys.Contains(Keys.A))
-            //    Actions.MoveAngle(this, Directions.Left, 3);
+            //    MoveAngle(Directions.Left, 3);
             //if (keys.Contains(Keys.D))
-            //    Actions.MoveAngle(this, Directions.Right, 3);
+            //    MoveAngle(Directions.Right, 3);
             //if (keys.Contains(Keys.W))
-            //    Actions.MoveAngle(this, Directions.Up, 3);
+            //    MoveAngle(Directions.Up, 3);
             //if (keys.Contains(Keys.S))
-            //    Actions.MoveAngle(this, Directions.Down, 3);
+            //    MoveAngle(Directions.Down, 3);
 
             ////Steping towards:
             //Vector2 somePoint = new Vector2(300, 300);
             //if (keys.Contains(Keys.Space))
-            //    Actions.StepTowards(this, somePoint, 10);
+            //    StepTowards(somePoint, 10);
 
             ////Moving towards:
             //Vector2 someOtherPoint = new Vector2(400, 300);
             //if (keys.Contains(Keys.Space))
-            //    Actions.MoveTowards(this, someOtherPoint, 3);
+            //    MoveTowards(someOtherPoint, 3);
         }
         public override void Collision(List<GameObject> collisions)
         {

@@ -19,38 +19,42 @@ namespace Testing
         public SmallDot(Vector2 position) : base(position)
         {
         }
+        public SmallDot()
+            : base()
+        {
+        }
 
         public override void KeyDown(List<Keys> keys)
         {
             //StepingAngle:
             if (keys.Contains(Keys.Left))
-                Actions.StepAngle(this, Directions.Left, 2);
+                StepAngle(Directions.Left, 2);
             if (keys.Contains(Keys.Right))
-                Actions.StepAngle(this, Directions.Right, 2);
+                StepAngle(Directions.Right, 2);
             if (keys.Contains(Keys.Up))
-                Actions.StepAngle(this, Directions.Up, 2);
+                StepAngle(Directions.Up, 2);
             if (keys.Contains(Keys.Down))
-                Actions.StepAngle(this, Directions.Down, 2);
+                StepAngle(Directions.Down, 2);
 
             ////MovingAngle:
             //if (keys.Contains(Keys.Left))
-            //    Actions.MoveAngle(this, Directions.Left, 2);
+            //    MoveAngle(Directions.Left, 2);
             //if (keys.Contains(Keys.Right))
-            //    Actions.MoveAngle(this, Directions.Right, 2);
+            //    MoveAngle(Directions.Right, 2);
             //if (keys.Contains(Keys.Up))
-            //    Actions.MoveAngle(this, Directions.Up, 2);
+            //    MoveAngle(Directions.Up, 2);
             //if (keys.Contains(Keys.Down))
-            //    Actions.MoveAngle(this, Directions.Down, 2);
+            //    MoveAngle(Directions.Down, 2);
 
             ////Steping towards:
             //Vector2 somePoint = new Vector2(300, 300);
             //if (keys.Contains(Keys.Space))
-            //    Actions.StepTowards(this, somePoint, 10);
+            //    StepTowards(somePoint, 10);
 
             ////Moving towards:
             //Vector2 someOtherPoint = new Vector2(400, 300);
             //if (keys.Contains(Keys.Space))
-            //    Actions.MoveTowards(this, someOtherPoint, 2);
+            //    MoveTowards(someOtherPoint, 2);
         }
         public override void Collision(List<GameObject> collisions)
         {
@@ -81,6 +85,7 @@ namespace Testing
         public override void IntersectBoundary()
         {
             Testing.Console.UniqueLine("Small dot is intersecting with the boundary");
+            //CreateObject(typeof(YellowObject), Sprite.Position);
         }
     }
 }

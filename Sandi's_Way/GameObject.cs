@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sandi_s_Way
 {
-    abstract public class GameObject
+    public class GameObject
     {
         //Object's proporties:
         public Vector2 Direction = new Vector2();
@@ -25,10 +25,23 @@ namespace Sandi_s_Way
         public GameObject(Vector2 position)
         {
             Alarms = new Dictionary<string, Alarm>();
-            Sprite = new Sprite(TextureContainer.DefaultTextures[this.GetType()], position);
+            try
+            {
+                Sprite = new Sprite(TextureContainer.DefaultTextures[this.GetType()], position);
+            }
+            catch { }
+        }
+        public GameObject()
+        {
+            Alarms = new Dictionary<string, Alarm>();
+            try
+            {
+                Sprite = new Sprite(TextureContainer.DefaultTextures[this.GetType()], new Vector2(0, 0));
+            }
+            catch { }
         }
 
-        //EVENTS: (they are all virtual instead of abstarct because you dont have to implement all of them)
+        //EVENTS:
         public virtual void Update()
         {
         } //triggerd when ObjectManager is updated
@@ -119,9 +132,7 @@ namespace Sandi_s_Way
 
         public void CreateObject(Type type, Vector2 position)
         {
-            GameObject obj = (GameObject)type.GetConstructor(new Type[] { }).Invoke(new object[] { });
-            obj.Sprite.Position = position;
-            ObjectManager.Objects.Add(obj);
+            ObjectManager.Create(type, position);
         }
         public void CreateMovingObject(Type type, Vector2 position, int angle, int speed)
         {
@@ -129,37 +140,33 @@ namespace Sandi_s_Way
             Matrix rotationMat = Matrix.CreateRotationZ((float)angle);
             Vector2 direction = Vector2.Transform(up, rotationMat);
 
-            GameObject obj = (GameObject)type.GetConstructor(new Type[] { }).Invoke(new object[] { });
-            obj.Sprite.Position = position;
-            obj.Direction = direction;
-            obj.Speed = speed;
-            ObjectManager.Objects.Add(obj);
+            CreateMovingObject(type, position, direction, speed);
         }
         public void CreateMovingObject(Type type, Vector2 position, Vector2 direction, int speed)
         {
-            GameObject obj = (GameObject)type.GetConstructor(new Type[] { }).Invoke(new object[] { });
-            obj.Sprite.Position = position;
+            ObjectManager.Create(type, position);
+
+            GameObject obj = ObjectManager.GetLastCreated();
             obj.Direction = direction;
             obj.Speed = speed;
-            ObjectManager.Objects.Add(obj);
         }
         public void DestroyObject(GameObject obj)
         {
-            ObjectManager.Objects.Remove(obj);
+            ObjectManager.Destroy(obj);
         }
 
         public void ChangeObject(Type type)
         {
             DestroyObject(this);
 
-            GameObject newObject = (GameObject)type.GetConstructor(new Type[] { }).Invoke(new object[] { });
-            newObject.Sprite.Position = Sprite.Position;
+            ObjectManager.Create(type, Sprite.Position);
+
+            GameObject newObject = ObjectManager.GetLastCreated();
+
             newObject.Direction = Direction;
             newObject.Speed = Speed;
-
-            ObjectManager.Create(newObject);
         }
-        //changes the object in argument to another type, but keeping some properties
+            //changes the object in argument to another type, but keeping some properties
         public void ChangeSprite(Sprite sprite)
         {
             Sprite = sprite;

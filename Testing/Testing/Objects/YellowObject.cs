@@ -19,6 +19,10 @@ namespace Testing
         public YellowObject(Vector2 position) : base(position)
         {
         }
+        public YellowObject()
+            : base()
+        {
+        }
 
         public override void Create(GameObject createdObject)
         {

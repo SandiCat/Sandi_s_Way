@@ -84,21 +84,13 @@ namespace Testing
             TextureContainer.DefaultTextures[typeof(RotatingCross)] = TextureContainer.Textures["Cross"]; //it has the same texture as normal cross
             TextureContainer.DefaultTextures[typeof(SmallDot)] = TextureContainer.AddTextureAndReturn("SmallSquare");
 
-            //Initialize the objects:
-            Blue = new BlueObject(new Vector2(0, 0));
-            Red = new RedObject(new Vector2(300, 300));
-            Yellow = new YellowObject(new Vector2(64 + 64 + 32, 32));
-            Cross = new Cross(new Vector2(64 + 32, 100 + 32));
-            RotatingCross = new RotatingCross(new Vector2(64 + 64 + 32, 100 + 32));
-            Dot = new SmallDot(new Vector2(0, 64));
-
             //Create the objects:
-            ObjectManager.Create(Blue);
-            ObjectManager.Create(Red);
-            ObjectManager.Create(Yellow);           
-            ObjectManager.Create(Cross);
-            ObjectManager.Create(RotatingCross);
-            ObjectManager.Create(Dot);
+            ObjectManager.InstantCreate(typeof(BlueObject), new Vector2(0, 0));
+            ObjectManager.InstantCreate(typeof(RedObject), new Vector2(300, 300));
+            ObjectManager.InstantCreate(typeof(YellowObject), new Vector2(64 + 64 + 32, 32));
+            ObjectManager.InstantCreate(typeof(Cross), new Vector2(64 + 32, 100 + 32));
+            ObjectManager.InstantCreate(typeof(RotatingCross), new Vector2(64 + 64 + 32, 100 + 32));
+            ObjectManager.InstantCreate(typeof(SmallDot), new Vector2(0, 64));
         }
 
         protected override void UnloadContent()

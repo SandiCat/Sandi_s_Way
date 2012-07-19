@@ -20,6 +20,10 @@ namespace Testing
             : base(position)
         {
         }
+        public Cross()
+            : base()
+        {
+        }
 
         public override void Create(GameObject createdObject)
         {

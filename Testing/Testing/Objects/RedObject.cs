@@ -19,7 +19,10 @@ namespace Testing
         public RedObject(Vector2 position)
             : base(position)
         {
-            Alarms.Add("testAlarm", new Alarm());
+        }
+        public RedObject()
+            : base()
+        {
         }
 
         public override void Create(GameObject createdObject)
@@ -27,6 +30,8 @@ namespace Testing
             if (createdObject == this)
             {
                 Testing.Console.WriteLine("A red object has been created");
+                
+                Alarms.Add("testAlarm", new Alarm());
 
                 Alarms["testAlarm"].Restart(300);
             }

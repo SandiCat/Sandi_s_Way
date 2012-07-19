@@ -20,7 +20,11 @@ namespace Testing
             : base(position)
         {
         }
-        
+        public RotatingCross()
+            : base()
+        {
+        }
+
         public override void Create(GameObject createdObject)
         {
             if (createdObject == this)

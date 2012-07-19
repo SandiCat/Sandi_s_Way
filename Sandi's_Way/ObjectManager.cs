@@ -17,6 +17,10 @@ namespace Sandi_s_Way
     public static class ObjectManager 
     {
         static public List<GameObject> Objects;
+        static public List<GameObject> ObjectsToCreate;
+        static public List<GameObject> ObjectsToDestroy; 
+            //This list serve as a to-do list for the manager, he destroys and creates objects from the Objects list acorrding to this two lists
+            //After the foreach has finished looping through Objects, because you can modify list while looping through them
 
         //Keyboard state variables:
         static private List<Keys> previousState;
@@ -27,6 +31,8 @@ namespace Sandi_s_Way
         public static void Initialize() //since this is a static object
         {
             Objects = new List<GameObject>();
+            ObjectsToCreate = new List<GameObject>();
+            ObjectsToDestroy = new List<GameObject>();
 
             previousState = new List<Keys>();
             currentState = new List<Keys>();
@@ -34,9 +40,11 @@ namespace Sandi_s_Way
             releasedKeys = new List<Keys>();
         }
 
-        static public void Create(GameObject obj)
+        static public void Create(Type type, Vector2 position)
         {
-            Objects.Add(obj);
+            GameObject obj = (GameObject)Activator.CreateInstance(type);
+            obj.Sprite.Position = position;
+            ObjectsToCreate.Add(obj);
 
             //Call the create event:
             foreach (var i in Objects) //I used 'i' here instead of 'obj' because 'obj' is taken
@@ -44,7 +52,29 @@ namespace Sandi_s_Way
                 i.Create(obj);
             }
         }
+        static public void InstantCreate(Type type, Vector2 position)
+        {
+            GameObject obj = (GameObject)Activator.CreateInstance(type);
+            obj.Sprite.Position = position;
+            Objects.Add(obj);
+
+            //Call the create event:
+            foreach (var i in Objects) //I used 'i' here instead of 'obj' because 'obj' is taken
+            {
+                i.Create(obj);
+            }
+        }  //Creates without using ObjectsToCreat. Use wisely.
         static public void Destroy(GameObject obj)
+        {
+            ObjectsToDestroy.Add(obj);
+
+            //Call the destroy event:
+            foreach (var i in Objects) //I used 'i' here instead of 'obj' because 'obj' is taken
+            {
+                i.Destroy(obj);
+            }           
+        }
+        static public void InstantDestroy(GameObject obj)
         {
             Objects.Remove(obj);
 
@@ -53,6 +83,21 @@ namespace Sandi_s_Way
             {
                 i.Destroy(obj);
             }
+        } //Destroys without using ObjectsToDestroy. Use wisely.
+
+        static public List<GameObject> Get(Type type)
+        {
+            List<GameObject> list = new List<GameObject>();
+
+            foreach (var obj in Objects)
+            {
+                if (obj.GetType() == type)
+                {
+                    list.Add(obj);
+                }
+            }
+
+            return list;
         }
 
         static public void UpdateAll()
@@ -90,6 +135,20 @@ namespace Sandi_s_Way
             ManageKeyboard();
             ManageCollisions();
             ManageMouse();
+
+            //Create objects from the ObjectsToCreat list
+            foreach (var obj in ObjectsToCreate)
+            {
+                Objects.Add(obj);
+            }
+            ObjectsToCreate.Clear();
+
+            //Destroy objects from the ObjectsToDestroy list
+            foreach (var obj in ObjectsToDestroy)
+            {
+                Objects.Remove(obj);
+            }
+            ObjectsToDestroy.Clear();
         }
         static public void DrawAll()
         {
@@ -280,23 +339,3 @@ namespace Sandi_s_Way
 }
 
 //HOW TO DO OBJECT STORING:
-/*
- * So, there are 2 types of game objects. 
- * 
- * First are the ones that are there from the begining. 
- * You want to have an easy way to acces this objects. 
- * You want them to have an indentificator. Not just an element in the list of objects.
- * So, what you do, is you define them inside the game class. 
- * Then, you add them to the object manager by using the Create() method.
- * Now you can simply use them by the name you assinged to them in the game class, but they
- * are still a part of the GameManager.
- * 
- * Second type are the ones that are created during the game. Usually by another object.
- * For example: bullets, particles, explosions, random pick ups and so on.
- * The thing with this objects is that you don't need to acces them after they are created. 
- * You can create them by just doing Create(new TypeOfObject());
- * If you really need to acces them, you can just have a reference ready for them in the object, and leater fill it with the object.
- * Or you could make the object, than just Create() and Destroy() it whenever you need.
- * 
- * Ofcourse, you can do this any way you want, but I find this is a quite descent way.
- */
