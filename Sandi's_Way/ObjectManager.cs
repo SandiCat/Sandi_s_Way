@@ -51,6 +51,8 @@ namespace Sandi_s_Way
             {
                 i.Create(obj);
             }
+
+            obj.Create(obj); //the loop above won't do this since it loops trough "Objects" and "obj" isnt in that list
         }
         static public void InstantCreate(Type type, Vector2 position)
         {
@@ -198,13 +200,19 @@ namespace Sandi_s_Way
         }
         static private void ManageCollisions()
         {
-            foreach (var obj1 in Objects)
+            List<GameObject> solidObjects = new List<GameObject>();
+            foreach (var obj in Objects)
+            {
+                if (obj.Solid) solidObjects.Add(obj);
+            }
+
+            foreach (var obj1 in solidObjects)
             {
                 List<GameObject> collisions = new List<GameObject>();
 
-                foreach (var obj2 in Objects)
+                foreach (var obj2 in solidObjects)
                 {
-                    if (obj1 != obj2) // you dont wanna check collisions with your self! That would be stupid!
+                    if (obj1 != obj2) // dont check collisions with yourself
                     {
                         if (obj1.Sprite.GetRectangle().Intersects(obj2.Sprite.GetRectangle())) //check if rectangles collide
                         {

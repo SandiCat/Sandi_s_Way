@@ -108,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Objects\Cross.cs" />
+    <Compile Include="Objects\MouseClick.cs" />
     <Compile Include="Objects\RotatingCross.cs" />
     <Compile Include="Objects\SmallDot.cs" />
     <Compile Include="Objects\RedObject.cs" />

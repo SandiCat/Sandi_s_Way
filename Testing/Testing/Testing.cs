@@ -56,8 +56,6 @@ namespace Testing
 
             //Initialize the static classes:
             ObjectManager.Initialize();
-            TextureContainer.Textures = new Dictionary<string, Texture2D>();
-            TextureContainer.DefaultTextures = new Dictionary<Type, Texture2D>();
 
             //Initialize the debug console:
             Console = new DebugConsole(spriteBatch, new Vector2(0, 0));
@@ -76,6 +74,9 @@ namespace Testing
             GameInfo.RefContent = Content;
             GameInfo.RefConsole = Console;
 
+            //Initialize the texture container:
+            TextureContainer.Initialize();
+
             //Initialize default sprites:
             TextureContainer.DefaultTextures[typeof(BlueObject)] = TextureContainer.AddTextureAndReturn("BlueSquare");
             TextureContainer.DefaultTextures[typeof(RedObject)] = TextureContainer.AddTextureAndReturn("RedSquare");
@@ -91,6 +92,7 @@ namespace Testing
             ObjectManager.InstantCreate(typeof(Cross), new Vector2(64 + 32, 100 + 32));
             ObjectManager.InstantCreate(typeof(RotatingCross), new Vector2(64 + 64 + 32, 100 + 32));
             ObjectManager.InstantCreate(typeof(SmallDot), new Vector2(0, 64));
+            ObjectManager.InstantCreate(typeof(MouseClick), new Vector2(0, 0));
         }
 
         protected override void UnloadContent()

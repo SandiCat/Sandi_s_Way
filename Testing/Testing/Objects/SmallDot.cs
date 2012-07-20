@@ -58,24 +58,27 @@ namespace Testing
         }
         public override void Collision(List<GameObject> collisions)
         {
-            if (collisions.Contains(Testing.Yellow))
+            foreach (var obj in collisions)
             {
-                Testing.Console.UniqueLine("Small dot collided with yellow object");
-            }
+                if (obj.GetType() == typeof(YellowObject))
+                {
+                    Testing.Console.UniqueLine("Small dot collided with yellow object");
+                }
 
-            if (collisions.Contains(Testing.Red))
-            {
-                Testing.Console.UniqueLine("Small dot collided with red object");
-            }
+                if (obj.GetType() == typeof(RedObject))
+                {
+                    Testing.Console.UniqueLine("Small dot collided with red object");
+                }
 
-            if (collisions.Contains(Testing.RotatingCross))
-            {
-                Testing.Console.UniqueLine("Small dot collided the spinnin' cross");
-            }
+                if (obj.GetType() == typeof(RotatingCross))
+                {
+                    Testing.Console.UniqueLine("Small dot collided the spinnin' cross");
+                }
 
-            if (collisions.Contains(Testing.Cross))
-            {
-                Testing.Console.UniqueLine("Small dot collided the cross");
+                if (obj.GetType() == typeof(Cross))
+                {
+                    Testing.Console.UniqueLine("Small dot collided the cross");
+                }
             }
         }
         public override void OutsideOfWindow()

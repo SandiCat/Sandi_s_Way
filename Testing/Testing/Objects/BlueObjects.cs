@@ -57,17 +57,5 @@ namespace Testing
             //if (keys.Contains(Keys.Space))
             //    MoveTowards(someOtherPoint, 3);
         }
-        public override void Collision(List<GameObject> collisions)
-        {
-            if (collisions.Contains(Testing.Yellow))
-            {
-                Testing.Console.UniqueLine("Blue object collided with yellow object");
-            }
-
-            if (collisions.Contains(Testing.Red))
-            {
-                Testing.Console.UniqueLine("Blue object collided with red object");
-            }
-        }
     }
 }

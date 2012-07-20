@@ -20,6 +20,7 @@ namespace Sandi_s_Way
         public Sprite Sprite; 
         public Dictionary<string, Alarm> Alarms;
         public bool Visable = true;
+        public bool Solid = true; //If this is false collisions will not be checked with this oject
 
         
         public GameObject(Vector2 position)
@@ -29,7 +30,10 @@ namespace Sandi_s_Way
             {
                 Sprite = new Sprite(TextureContainer.DefaultTextures[this.GetType()], position);
             }
-            catch { }
+            catch
+            {
+                Sprite = new Sprite(TextureContainer.EmptyTexture, position);
+            }
         }
         public GameObject()
         {
@@ -38,7 +42,10 @@ namespace Sandi_s_Way
             {
                 Sprite = new Sprite(TextureContainer.DefaultTextures[this.GetType()], new Vector2(0, 0));
             }
-            catch { }
+            catch
+            {
+                Sprite = new Sprite(TextureContainer.EmptyTexture, new Vector2(0, 0));
+            }
         }
 
         //EVENTS:
@@ -101,7 +108,7 @@ namespace Sandi_s_Way
         public void MoveAngle(float angle, float speed)
         {
             Vector2 up = new Vector2(0, -1);
-            Matrix rotationMat = Matrix.CreateRotationZ((float)angle);
+            Matrix rotationMat = Matrix.CreateRotationZ(angle);
             Vector2 direction = Vector2.Transform(up, rotationMat);
 
             Direction = direction;
@@ -120,7 +127,7 @@ namespace Sandi_s_Way
         public void StepAngle(float angle, float distance)
         {
             Vector2 up = new Vector2(0, -1);
-            Matrix rotationMat = Matrix.CreateRotationZ((float)angle);
+            Matrix rotationMat = Matrix.CreateRotationZ(angle);
             Vector2 direction = Vector2.Transform(up, rotationMat);
 
             Sprite.Position += direction * distance;
@@ -134,10 +141,10 @@ namespace Sandi_s_Way
         {
             ObjectManager.Create(type, position);
         }
-        public void CreateMovingObject(Type type, Vector2 position, int angle, int speed)
+        public void CreateMovingObject(Type type, Vector2 position, float angle, int speed)
         {
             Vector2 up = new Vector2(0, -1);
-            Matrix rotationMat = Matrix.CreateRotationZ((float)angle);
+            Matrix rotationMat = Matrix.CreateRotationZ(angle);
             Vector2 direction = Vector2.Transform(up, rotationMat);
 
             CreateMovingObject(type, position, direction, speed);

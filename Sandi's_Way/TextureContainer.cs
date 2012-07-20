@@ -17,6 +17,16 @@ namespace Sandi_s_Way
         public static Dictionary<string, Texture2D> Textures;
         public static Dictionary<Type, Texture2D> DefaultTextures; //only keeps references to textures in the dictionary "Textures"
 
+        public static Texture2D EmptyTexture;
+
+        public static void Initialize() //since this is a static object
+        {
+            Textures = new Dictionary<string, Texture2D>();
+            DefaultTextures = new Dictionary<Type, Texture2D>();
+
+            EmptyTexture = new Texture2D(GameInfo.RefDevice, 1, 1);
+        }
+
         public static void AddTexture(string filename)
         {
             Texture2D texture = GameInfo.RefContent.Load<Texture2D>(filename);
