@@ -46,6 +46,20 @@ namespace Sandi_s_Way
 
             return new Sprite(Textures[filename], position);
         }
+
+        public static Texture2D ColoredRectangle(Color color, int width, int height)
+        {
+            Color[] colorArray = new Color[width * height];
+            for (int i = 0; i < (width * height); i++) //fill colorArray with colors
+            {
+                colorArray[i] = color;
+            }
+
+            Texture2D returnTexture = new Texture2D(GameInfo.RefDevice, width, height);
+            returnTexture.SetData(colorArray);
+
+            return returnTexture;
+        }
     }
 }
 

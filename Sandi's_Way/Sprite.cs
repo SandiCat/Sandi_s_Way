@@ -96,15 +96,7 @@ namespace Sandi_s_Way
         {
             Rectangle rectangle = GetRectangle();
 
-            Texture2D RectangleTexture = new Texture2D(GameInfo.RefDevice, rectangle.Width, rectangle.Height);
-
-            Color[] colorArray = new Color[rectangle.Width * rectangle.Height];
-            for (int i = 0; i < (rectangle.Width * rectangle.Height); i++) //fill colorArray with colors
-            {
-                colorArray[i] = Color.PeachPuff; //do you have anything against peach puff? DO YOU?!
-            }
-
-            RectangleTexture.SetData(colorArray);
+            Texture2D RectangleTexture = TextureContainer.ColoredRectangle(Color.PeachPuff, rectangle.Width, rectangle.Height);
 
             GameInfo.RefSpriteBatch.Draw(RectangleTexture, rectangle, Color.White);
         } //for debugging

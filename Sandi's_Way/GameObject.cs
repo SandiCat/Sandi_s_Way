@@ -107,11 +107,7 @@ namespace Sandi_s_Way
         }
         public void MoveAngle(float angle, float speed)
         {
-            Vector2 up = new Vector2(0, -1);
-            Matrix rotationMat = Matrix.CreateRotationZ(angle);
-            Vector2 direction = Vector2.Transform(up, rotationMat);
-
-            Direction = direction;
+            Direction = AngleToDirection(angle);
             Speed = speed;
         }
         public void StopMovment()
@@ -126,11 +122,7 @@ namespace Sandi_s_Way
         }
         public void StepAngle(float angle, float distance)
         {
-            Vector2 up = new Vector2(0, -1);
-            Matrix rotationMat = Matrix.CreateRotationZ(angle);
-            Vector2 direction = Vector2.Transform(up, rotationMat);
-
-            Sprite.Position += direction * distance;
+            Sprite.Position += AngleToDirection(angle) * distance;
         }
         public void JumpTo(Vector2 point)
         {
@@ -143,11 +135,7 @@ namespace Sandi_s_Way
         }
         public void CreateMovingObject(Type type, Vector2 position, float angle, int speed)
         {
-            Vector2 up = new Vector2(0, -1);
-            Matrix rotationMat = Matrix.CreateRotationZ(angle);
-            Vector2 direction = Vector2.Transform(up, rotationMat);
-
-            CreateMovingObject(type, position, direction, speed);
+            CreateMovingObject(type, position, AngleToDirection(angle), speed);
         }
         public void CreateMovingObject(Type type, Vector2 position, Vector2 direction, int speed)
         {
@@ -177,6 +165,15 @@ namespace Sandi_s_Way
         public void ChangeSprite(Sprite sprite)
         {
             Sprite = sprite;
+        }
+
+        private Vector2 AngleToDirection(float angle)
+        {
+            Vector2 up = new Vector2(0, -1);
+            Matrix rotationMat = Matrix.CreateRotationZ(angle);
+            Vector2 direction = Vector2.Transform(up, rotationMat);
+
+            return direction;
         }
     }
 }
