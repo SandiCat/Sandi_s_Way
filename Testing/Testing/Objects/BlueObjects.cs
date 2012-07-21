@@ -57,5 +57,9 @@ namespace Testing
             //if (keys.Contains(Keys.Space))
             //    MoveTowards(someOtherPoint, 3);
         }
+        public override void MouseOver()
+        {
+            DestroyObject(this);
+        }
     }
 }

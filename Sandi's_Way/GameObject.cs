@@ -160,11 +160,16 @@ namespace Sandi_s_Way
 
             newObject.Direction = Direction;
             newObject.Speed = Speed;
+            newObject.Sprite.Origin = Sprite.Origin;
         }
-            //changes the object in argument to another type, but keeping some properties
-        public void ChangeSprite(Sprite sprite)
+            //changes the object to another type, but keeping some properties
+        public void ChangeSpriteTexture(Texture2D texture)
         {
-            Sprite = sprite;
+            Sprite.Image = texture;
+        }
+        public void ChangeSpriteTexture(string filename)
+        {
+            ChangeSpriteTexture(TextureContainer.Textures[filename]);
         }
 
         private Vector2 AngleToDirection(float angle)

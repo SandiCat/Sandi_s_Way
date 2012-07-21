@@ -23,10 +23,14 @@ namespace Sandi_s_Way
             //After the foreach has finished looping through Objects, because you can modify list while looping through them
 
         //Keyboard state variables:
-        static private List<Keys> previousState;
-        static private List<Keys> currentState;
+        static private List<Keys> previousKeyboardState;
+        static private List<Keys> currentKeyboardState;
         static private List<Keys> pressedKeys;
         static private List<Keys> releasedKeys;
+
+        //Mouse state variables:
+        static private MouseState previousMouseState;
+        static private MouseState currentMouseState;
 
         public static void Initialize() //since this is a static object
         {
@@ -34,10 +38,13 @@ namespace Sandi_s_Way
             ObjectsToCreate = new List<GameObject>();
             ObjectsToDestroy = new List<GameObject>();
 
-            previousState = new List<Keys>();
-            currentState = new List<Keys>();
+            previousKeyboardState = new List<Keys>();
+            currentKeyboardState = new List<Keys>();
             pressedKeys = new List<Keys>();
             releasedKeys = new List<Keys>();
+
+            previousMouseState = new MouseState();
+            currentMouseState = new MouseState();
         }
 
         static public void Create(Type type, Vector2 position)
@@ -168,35 +175,35 @@ namespace Sandi_s_Way
         
         static private void ManageKeyboard()
         {
-            currentState = Keyboard.GetState().GetPressedKeys().ToList();
+            currentKeyboardState = Keyboard.GetState().GetPressedKeys().ToList();
 
             //Clear lists:
             pressedKeys.Clear();
             releasedKeys.Clear();
 
             //Get pressed keys:
-            foreach (var key in currentState)
+            foreach (var key in currentKeyboardState)
             {
-                if (!previousState.Contains(key))
+                if (!previousKeyboardState.Contains(key))
                     pressedKeys.Add(key);
             }
             
             //Get released keys:
-            foreach (var key in previousState)
+            foreach (var key in previousKeyboardState)
             {
-                if (!currentState.Contains(key))
+                if (!currentKeyboardState.Contains(key))
                     releasedKeys.Add(key);
             }
 
             //Call events:
             foreach (var obj in Objects)
             {
-                obj.KeyDown(currentState);
+                obj.KeyDown(currentKeyboardState);
                 obj.KeyPressed(pressedKeys);
                 obj.KeyReleased(releasedKeys);
             }            
 
-            previousState = Keyboard.GetState().GetPressedKeys().ToList(); 
+            previousKeyboardState = Keyboard.GetState().GetPressedKeys().ToList(); 
         }
         static private void ManageCollisions()
         {
@@ -230,8 +237,8 @@ namespace Sandi_s_Way
         static private void ManageMouse()
         {
             //Get mouse info:
-            MouseState mouse = Mouse.GetState();
-            Vector2 position = new Vector2(mouse.X, mouse.Y);
+            currentMouseState = Mouse.GetState();
+            Vector2 position = new Vector2(currentMouseState.X, currentMouseState.Y);
             
             //The way I'll check mouse clicks is I'll create a small sprite and check collision.
 
@@ -250,17 +257,13 @@ namespace Sandi_s_Way
 
                 if (obj.Sprite.GetRectangle().Intersects(point.GetRectangle()))
                 {
-                    GameInfo.RefConsole.UniqueLine("I entred rectangle check");
-
                     if (IntersectPixels(obj.Sprite, point))
                     {
-                        GameInfo.RefConsole.UniqueLine("I entred per-pixel check");
-
-                        if (mouse.LeftButton == ButtonState.Pressed)
+                        if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released)
                         {
                             obj.Clicked();
                         }
-                        else if (mouse.RightButton == ButtonState.Pressed)
+                        else if (currentMouseState.RightButton == ButtonState.Pressed && previousMouseState.RightButton == ButtonState.Pressed)
                         {
                             obj.RightClicked();
                         }
@@ -271,6 +274,8 @@ namespace Sandi_s_Way
                     }
                 }
             }
+
+            previousMouseState = Mouse.GetState();
         }
         
         private static bool IntersectPixels(Sprite spriteA, Sprite spriteB)
@@ -341,7 +346,13 @@ namespace Sandi_s_Way
 
         public static GameObject GetLastCreated()
         {
-            return Objects.Last();
+            return ObjectsToCreate.Last();
+        }
+        public static void Clear() //Cleans this object out - destroys all objects
+        {
+            Objects.Clear();
+            ObjectsToCreate.Clear();
+            ObjectsToDestroy.Clear();
         }
     } 
 }

@@ -32,10 +32,13 @@ namespace Testing
                 Sprite.Rotation = MathHelper.ToRadians(45);
             }
         }
-
         public override void Update()
         {
             Sprite.Rotation += MathHelper.ToRadians(1.0f);
+        }
+        public override void Clicked()
+        {
+            ChangeObject(typeof(RedObject));
         }
     }
 }
