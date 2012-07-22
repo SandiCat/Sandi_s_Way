@@ -46,10 +46,10 @@ namespace Testing
             //    CreateObject(typeof(YellowObject), new Vector2(mouse.X, mouse.Y));
             //}
 
-            //if (mouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton != ButtonState.Pressed)
-            //{
-            //    CreateMovingObject(typeof(YellowObject), new Vector2(mouse.X, mouse.Y), Directions.Left, 3);
-            //}
+            if (mouse.LeftButton == ButtonState.Pressed && previousMouse.LeftButton != ButtonState.Pressed)
+            {
+                CreateMovingObject(typeof(YellowObject), new Vector2(mouse.X, mouse.Y), Directions.Left, 3);
+            }
 
             previousMouse = Mouse.GetState();
         }

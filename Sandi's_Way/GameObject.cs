@@ -12,7 +12,7 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Sandi_s_Way
 {
-    public class GameObject
+    public abstract class GameObject
     {
         //Object's proporties:
         public Vector2 Direction = new Vector2();
@@ -145,6 +145,27 @@ namespace Sandi_s_Way
             obj.Direction = direction;
             obj.Speed = speed;
         }
+
+        public GameObject CreateAndReturnObject(Type type, Vector2 position)
+        {
+            ObjectManager.Create(type, position);
+            return ObjectManager.GetLastCreated();
+        }
+        public GameObject CreateAndReturnMovingObject(Type type, Vector2 position, float angle, int speed)
+        {
+            CreateMovingObject(type, position, AngleToDirection(angle), speed);
+            return ObjectManager.GetLastCreated();
+        }
+        public GameObject CreateAndReturnMovingObject(Type type, Vector2 position, Vector2 direction, int speed)
+        {
+            ObjectManager.Create(type, position);
+
+            GameObject obj = ObjectManager.GetLastCreated();
+            obj.Direction = direction;
+            obj.Speed = speed;
+            return ObjectManager.GetLastCreated();
+        }
+
         public void DestroyObject(GameObject obj)
         {
             ObjectManager.Destroy(obj);
