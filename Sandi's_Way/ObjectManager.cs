@@ -120,15 +120,13 @@ namespace Sandi_s_Way
                 obj.Update();
 
                 //Call the "Outside of window" event:
-                Rectangle screenRectangle = GameInfo.RefDevice.Viewport.Bounds;
-                if (!screenRectangle.Intersects(obj.Sprite.GetRectangle()))
+                if (obj.IsOutsideWindow())
                 {
                     obj.OutsideOfWindow();
                 }
 
                 //Call the "Intersect boundary" event:
-                if (screenRectangle.Intersects(obj.Sprite.GetRectangle())
-                    && !screenRectangle.Contains(obj.Sprite.GetRectangle()))
+                if (obj.IsIntersecting())
                 {
                     obj.IntersectBoundary();
                 }
@@ -219,15 +217,9 @@ namespace Sandi_s_Way
 
                 foreach (var obj2 in solidObjects)
                 {
-                    if (obj1 != obj2) // dont check collisions with yourself
+                    if (obj1.IsColliding(obj2))
                     {
-                        if (obj1.Sprite.GetRectangle().Intersects(obj2.Sprite.GetRectangle())) //check if rectangles collide
-                        {
-                            if (IntersectPixels(obj1.Sprite, obj2.Sprite)) //check pixel collision
-                            {
-                                collisions.Add(obj2);
-                            }
-                        }
+                        collisions.Add(obj2);
                     }
                 }
                 
