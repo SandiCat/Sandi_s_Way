@@ -29,8 +29,8 @@ namespace Sandi_s_Way
         static private List<Keys> releasedKeys;
 
         //Mouse state variables:
-        static private MouseState previousMouseState;
-        static private MouseState currentMouseState;
+        static public MouseState PreviousMouseState;
+        static public MouseState CurrentMouseState;
 
         public static void Initialize() //since this is a static object
         {
@@ -43,8 +43,8 @@ namespace Sandi_s_Way
             pressedKeys = new List<Keys>();
             releasedKeys = new List<Keys>();
 
-            previousMouseState = new MouseState();
-            currentMouseState = new MouseState();
+            PreviousMouseState = new MouseState();
+            CurrentMouseState = new MouseState();
         }
 
         static public void Create(Type type, Vector2 position)
@@ -229,45 +229,25 @@ namespace Sandi_s_Way
         static private void ManageMouse()
         {
             //Get mouse info:
-            currentMouseState = Mouse.GetState();
-            Vector2 position = new Vector2(currentMouseState.X, currentMouseState.Y);
-            
-            //The way I'll check mouse clicks is I'll create a small sprite and check collision.
+            CurrentMouseState = Mouse.GetState();
 
-            //Make a little texture for the mouse sprite (this wont be drawn):
-            Texture2D texture = new Texture2D(GameInfo.RefDevice, 1, 1);
-            texture.SetData(new Color[] { Color.Black });
-
-            //Make a sprite where the mouse is:
-            Sprite point = new Sprite(texture, position);  
-
-            //Check collisions with sprite:
             foreach (var obj in Objects)
             {
-                point.Scale = obj.Sprite.Scale;
-                point.Rotation = obj.Sprite.Rotation;
-
-                if (obj.Sprite.GetRectangle().Intersects(point.GetRectangle()))
+                if (obj.IsClicked())
                 {
-                    if (IntersectPixels(obj.Sprite, point))
-                    {
-                        if (currentMouseState.LeftButton == ButtonState.Pressed && previousMouseState.LeftButton == ButtonState.Released)
-                        {
-                            obj.Clicked();
-                        }
-                        else if (currentMouseState.RightButton == ButtonState.Pressed && previousMouseState.RightButton == ButtonState.Pressed)
-                        {
-                            obj.RightClicked();
-                        }
-                        else
-                        {
-                            obj.MouseOver();
-                        }
-                    }
+                    obj.Clicked();
+                }
+                else if (obj.IsRightClicked())
+                {
+                    obj.RightClicked();
+                }
+                else if (obj.IsMouseOver())
+                {
+                    obj.MouseOver();
                 }
             }
 
-            previousMouseState = Mouse.GetState();
+            PreviousMouseState = Mouse.GetState();
         }
         
         private static bool IntersectPixels(Sprite spriteA, Sprite spriteB)

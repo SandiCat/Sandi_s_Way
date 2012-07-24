@@ -210,7 +210,7 @@ namespace Sandi_s_Way
         public bool IsOutsideWindow()
         {
             Rectangle screenRectangle = GameInfo.RefDevice.Viewport.Bounds;
-            if (!screenRectangle.Contains(Sprite.GetRectangle()))
+            if (!screenRectangle.Contains(Sprite.GetRectangle()) && !IsIntersecting())
             {
                 return true;
             }
@@ -244,15 +244,120 @@ namespace Sandi_s_Way
                 return false;
             }
         }
-        //public bool IsClicked()
-        //{
-        //}
-        //public bool IsRightClicked()
-        //{
-        //}
-        //public bool IsMouseOver()
-        //{
-        //}
+        public bool IsClicked()
+        {
+            //The way I'll check mouse clicks is I'll create a small sprite and check collision.
+
+            //Make a little texture for the mouse sprite (this wont be drawn):
+            Texture2D texture = new Texture2D(GameInfo.RefDevice, 1, 1);
+            texture.SetData(new Color[] { Color.Black });
+            Vector2 position = new Vector2(ObjectManager.CurrentMouseState.X, ObjectManager.CurrentMouseState.Y);
+
+            //Make a sprite where the mouse is:
+            Sprite point = new Sprite(texture, position);
+            point.Scale = Sprite.Scale;
+            point.Rotation = Sprite.Rotation;
+
+            if (Sprite.GetRectangle().Intersects(point.GetRectangle()))
+            {
+                if (IntersectPixels(Sprite, point))
+                {
+                    if (ObjectManager.CurrentMouseState.LeftButton == ButtonState.Pressed
+                        && ObjectManager.PreviousMouseState.LeftButton == ButtonState.Released)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool IsRightClicked()
+        {
+            //The way I'll check mouse clicks is I'll create a small sprite and check collision.
+
+            //Make a little texture for the mouse sprite (this wont be drawn):
+            Texture2D texture = new Texture2D(GameInfo.RefDevice, 1, 1);
+            texture.SetData(new Color[] { Color.Black });
+            Vector2 position = new Vector2(ObjectManager.CurrentMouseState.X, ObjectManager.CurrentMouseState.Y);
+
+            //Make a sprite where the mouse is:
+            Sprite point = new Sprite(texture, position);
+            point.Scale = Sprite.Scale;
+            point.Rotation = Sprite.Rotation;
+
+            if (Sprite.GetRectangle().Intersects(point.GetRectangle()))
+            {
+                if (IntersectPixels(Sprite, point))
+                {
+                    if (ObjectManager.CurrentMouseState.RightButton == ButtonState.Pressed
+                        && ObjectManager.PreviousMouseState.RightButton == ButtonState.Released)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public bool IsMouseOver()
+        {
+            //The way I'll check mouse clicks is I'll create a small sprite and check collision.
+
+            //Make a little texture for the mouse sprite (this wont be drawn):
+            Texture2D texture = new Texture2D(GameInfo.RefDevice, 1, 1);
+            texture.SetData(new Color[] { Color.Black });
+            Vector2 position = new Vector2(ObjectManager.CurrentMouseState.X, ObjectManager.CurrentMouseState.Y);
+
+            //Make a sprite where the mouse is:
+            Sprite point = new Sprite(texture, position);
+            point.Scale = Sprite.Scale;
+            point.Rotation = Sprite.Rotation;
+
+            if (Sprite.GetRectangle().Intersects(point.GetRectangle()))
+            {
+                if (IntersectPixels(Sprite, point))
+                {
+                    if (ObjectManager.CurrentMouseState.LeftButton == ButtonState.Released
+                        && ObjectManager.PreviousMouseState.RightButton == ButtonState.Released)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         private Vector2 AngleToDirection(float angle)
         {
