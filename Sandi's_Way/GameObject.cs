@@ -247,10 +247,8 @@ namespace Sandi_s_Way
         public bool IsClicked()
         {
             //The way I'll check mouse clicks is I'll create a small sprite and check collision.
+            Texture2D texture = TextureContainer.Textures["Mouse"];
 
-            //Make a little texture for the mouse sprite (this wont be drawn):
-            Texture2D texture = new Texture2D(GameInfo.RefDevice, 1, 1);
-            texture.SetData(new Color[] { Color.Black });
             Vector2 position = new Vector2(ObjectManager.CurrentMouseState.X, ObjectManager.CurrentMouseState.Y);
 
             //Make a sprite where the mouse is:
@@ -285,10 +283,8 @@ namespace Sandi_s_Way
         public bool IsRightClicked()
         {
             //The way I'll check mouse clicks is I'll create a small sprite and check collision.
+            Texture2D texture = TextureContainer.Textures["Mouse"];
 
-            //Make a little texture for the mouse sprite (this wont be drawn):
-            Texture2D texture = new Texture2D(GameInfo.RefDevice, 1, 1);
-            texture.SetData(new Color[] { Color.Black });
             Vector2 position = new Vector2(ObjectManager.CurrentMouseState.X, ObjectManager.CurrentMouseState.Y);
 
             //Make a sprite where the mouse is:
@@ -323,10 +319,8 @@ namespace Sandi_s_Way
         public bool IsMouseOver()
         {
             //The way I'll check mouse clicks is I'll create a small sprite and check collision.
+            Texture2D texture = TextureContainer.Textures["Mouse"];
 
-            //Make a little texture for the mouse sprite (this wont be drawn):
-            Texture2D texture = new Texture2D(GameInfo.RefDevice, 1, 1);
-            texture.SetData(new Color[] { Color.Black });
             Vector2 position = new Vector2(ObjectManager.CurrentMouseState.X, ObjectManager.CurrentMouseState.Y);
 
             //Make a sprite where the mouse is:

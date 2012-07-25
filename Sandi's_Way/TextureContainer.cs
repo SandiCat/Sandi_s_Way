@@ -25,6 +25,10 @@ namespace Sandi_s_Way
             DefaultTextures = new Dictionary<Type, Texture2D>();
 
             EmptyTexture = new Texture2D(GameInfo.RefDevice, 1, 1);
+
+            //Make a mouse texture
+            TextureContainer.Textures.Add("Mouse", new Texture2D(GameInfo.RefDevice, 1, 1));
+            TextureContainer.Textures["Mouse"].SetData(new Color[] { Color.Black });
         }
 
         public static void AddTexture(string filename)

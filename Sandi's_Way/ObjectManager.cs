@@ -31,6 +31,7 @@ namespace Sandi_s_Way
         //Mouse state variables:
         static public MouseState PreviousMouseState;
         static public MouseState CurrentMouseState;
+        static public Texture2D MouseTexture;
 
         public static void Initialize() //since this is a static object
         {
