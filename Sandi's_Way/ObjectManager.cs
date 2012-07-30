@@ -33,6 +33,9 @@ namespace Sandi_s_Way
         static public MouseState CurrentMouseState;
         static public Texture2D MouseTexture;
 
+        //Random number generator:
+        static public Random Rand;
+
         public static void Initialize() //since this is a static object
         {
             Objects = new List<GameObject>();
@@ -46,6 +49,8 @@ namespace Sandi_s_Way
 
             PreviousMouseState = new MouseState();
             CurrentMouseState = new MouseState();
+
+            Rand = new Random();
         }
 
         static public void Create(Type type, Vector2 position)

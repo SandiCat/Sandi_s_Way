@@ -48,7 +48,7 @@ namespace Sandi_s_Way
             }
         }
 
-        //EVENTS:
+        #region EVENTS
         public virtual void Update()
         {
         } //triggerd when ObjectManager is updated
@@ -97,8 +97,9 @@ namespace Sandi_s_Way
         public virtual void IntersectBoundary()
         { 
         } //triggerd when and if an object touches the boundary
+        #endregion
 
-        //ACTIONS:
+        #region ACTIONS
         public void MoveTowards(Vector2 point, float speed)
         {
             point.Normalize();
@@ -192,8 +193,9 @@ namespace Sandi_s_Way
         {
             ChangeSpriteTexture(TextureContainer.Textures[filename]);
         }
+        #endregion
 
-        //CHECKS:
+        #region CHECKS
         public bool IsIntersecting()
         {
             Rectangle screenRectangle = GameInfo.RefDevice.Viewport.Bounds;
@@ -352,6 +354,18 @@ namespace Sandi_s_Way
                 return false;
             }
         }
+        public bool IsDestroyed()
+        {
+            if (ObjectManager.Objects.Contains(this))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        #endregion
 
         private Vector2 AngleToDirection(float angle)
         {
