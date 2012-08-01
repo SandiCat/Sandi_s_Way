@@ -356,13 +356,13 @@ namespace Sandi_s_Way
         }
         public bool IsDestroyed()
         {
-            if (ObjectManager.Objects.Contains(this))
+            if (!ObjectManager.Objects.Contains(this) && !ObjectManager.ObjectsToCreate.Contains(this))
             {
-                return false;
+                return true;
             }
             else
             {
-                return true;
+                return false;
             }
         }
         #endregion

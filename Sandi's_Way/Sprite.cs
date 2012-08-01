@@ -54,31 +54,38 @@ namespace Sandi_s_Way
         }
         public Rectangle GetRectangle()
         {
-            Rectangle rectangle = new Rectangle(0, 0, Image.Width, Image.Height);
-            
-            Matrix transform = GetMatrix();
+            if (Scale == 1.0f && Rotation == 0.0f && Origin == Position)
+            {
+                return new Rectangle((int)Position.X, (int)Position.Y, Image.Width, Image.Height);
+            }
+            else
+            {
+                Rectangle rectangle = new Rectangle(0, 0, Image.Width, Image.Height);
 
-            // Get all four corners in local space
-            Vector2 leftTop = new Vector2(rectangle.Left, rectangle.Top);
-            Vector2 rightTop = new Vector2(rectangle.Right, rectangle.Top);
-            Vector2 leftBottom = new Vector2(rectangle.Left, rectangle.Bottom);
-            Vector2 rightBottom = new Vector2(rectangle.Right, rectangle.Bottom);
+                Matrix transform = GetMatrix();
 
-            // Transform all four corners into work space
-            leftTop = Vector2.Transform(leftTop, transform);
-            rightTop = Vector2.Transform(rightTop, transform);
-            leftBottom = Vector2.Transform(leftBottom, transform);
-            rightBottom = Vector2.Transform(rightBottom, transform);
+                // Get all four corners in local space
+                Vector2 leftTop = new Vector2(rectangle.Left, rectangle.Top);
+                Vector2 rightTop = new Vector2(rectangle.Right, rectangle.Top);
+                Vector2 leftBottom = new Vector2(rectangle.Left, rectangle.Bottom);
+                Vector2 rightBottom = new Vector2(rectangle.Right, rectangle.Bottom);
 
-            // Find the minimum and maximum extents of the rectangle in world space
-            Vector2 min = Vector2.Min(Vector2.Min(leftTop, rightTop),
-                                      Vector2.Min(leftBottom, rightBottom));
-            Vector2 max = Vector2.Max(Vector2.Max(leftTop, rightTop),
-                                      Vector2.Max(leftBottom, rightBottom));
+                // Transform all four corners into work space
+                leftTop = Vector2.Transform(leftTop, transform);
+                rightTop = Vector2.Transform(rightTop, transform);
+                leftBottom = Vector2.Transform(leftBottom, transform);
+                rightBottom = Vector2.Transform(rightBottom, transform);
 
-            // Return that as a rectangle
-            return new Rectangle((int)min.X, (int)min.Y,
-                                 (int)(max.X - min.X), (int)(max.Y - min.Y));
+                // Find the minimum and maximum extents of the rectangle in world space
+                Vector2 min = Vector2.Min(Vector2.Min(leftTop, rightTop),
+                                          Vector2.Min(leftBottom, rightBottom));
+                Vector2 max = Vector2.Max(Vector2.Max(leftTop, rightTop),
+                                          Vector2.Max(leftBottom, rightBottom));
+
+                // Return that as a rectangle
+                return new Rectangle((int)min.X, (int)min.Y,
+                                     (int)(max.X - min.X), (int)(max.Y - min.Y));
+            }
         }
         public Color[] GetColorData()
         {
