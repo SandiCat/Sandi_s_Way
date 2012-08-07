@@ -65,7 +65,23 @@ namespace Sandi_s_Way
                 i.Create(obj);
             }
 
-            obj.Create(obj); //the loop above won't do this since it loops trough "Objects" and "obj" isnt in that list
+            obj.Create(obj); //the loop above won't do this since it loops trough "Objects" and "obj" isnt in that list yet
+        }
+        static public GameObject CreateAndReturn(Type type, Vector2 position)
+        {
+            GameObject obj = (GameObject)Activator.CreateInstance(type);
+            obj.Sprite.Position = position;
+            ObjectsToCreate.Add(obj);
+
+            //Call the create event:
+            foreach (var i in Objects) //I used 'i' here instead of 'obj' because 'obj' is taken
+            {
+                i.Create(obj);
+            }
+
+            obj.Create(obj); //the loop above won't do this since it loops trough "Objects" and "obj" isnt in that list yet
+
+            return obj;
         }
         static public void InstantCreate(Type type, Vector2 position)
         {
@@ -328,9 +344,9 @@ namespace Sandi_s_Way
         }
         public static void Clear() //Cleans this object out - destroys all objects
         {
-            Objects.Clear();
             ObjectsToCreate.Clear();
             ObjectsToDestroy.Clear();
+            ObjectsToDestroy.AddRange(Objects);
         }
     } 
 }
