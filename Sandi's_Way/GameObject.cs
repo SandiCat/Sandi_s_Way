@@ -369,7 +369,7 @@ namespace Sandi_s_Way
 
             return direction;
         }
-        private static bool IntersectPixels(Sprite spriteA, Sprite spriteB)
+        public static bool IntersectPixels(Sprite spriteA, Sprite spriteB)
         {
             Matrix transformA = spriteA.GetMatrix();
             Matrix transformB = spriteB.GetMatrix();

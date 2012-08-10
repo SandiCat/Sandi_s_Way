@@ -25,10 +25,10 @@ namespace Sandi_s_Way
             {
                 foreach (var character in row)
                 {
-                    ObjectManager.Create(discription[character], new Vector2(x, y));
+                   if (discription[character] != null) ObjectManager.Create(discription[character], new Vector2(x, y));
                     x += elementWidth;
                 }
-
+                x = position.X;
                 y += elementHeight;
             }
         }

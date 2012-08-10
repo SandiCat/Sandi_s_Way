@@ -19,8 +19,8 @@ namespace Sandi_s_Way
         static public List<GameObject> Objects;
         static public List<GameObject> ObjectsToCreate;
         static public List<GameObject> ObjectsToDestroy; 
-            //This list serve as a to-do list for the manager, he destroys and creates objects from the Objects list acorrding to this two lists
-            //After the foreach has finished looping through Objects, because you can modify list while looping through them
+            //This lists serve as a to-do list for the manager, he destroys and creates objects from the Objects list acorrding to this two lists
+            //After the foreach has finished looping through Objects, because you can't modify lists while looping through them
 
         //Keyboard state variables:
         static private List<Keys> previousKeyboardState;
