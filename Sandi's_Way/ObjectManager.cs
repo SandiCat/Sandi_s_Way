@@ -95,6 +95,20 @@ namespace Sandi_s_Way
                 i.Create(obj);
             }
         }  //Creates without using ObjectsToCreat. Use wisely.
+        static public GameObject InstantCreateAndReturn(Type type, Vector2 position)
+        {
+            GameObject obj = (GameObject)Activator.CreateInstance(type);
+            obj.Sprite.Position = position;
+            Objects.Add(obj);
+
+            //Call the create event:
+            foreach (var i in Objects) //I used 'i' here instead of 'obj' because 'obj' is taken
+            {
+                i.Create(obj);
+            }
+
+            return obj;
+        }  //Creates without using ObjectsToCreat. Use wisely.
         static public void Destroy(GameObject obj)
         {
             ObjectsToDestroy.Add(obj);
