@@ -109,6 +109,30 @@ namespace Sandi_s_Way
 
             return obj;
         }  //Creates without using ObjectsToCreat. Use wisely.
+
+        static public void ImportExisting(GameObject obj)
+        {
+            ObjectsToCreate.Add(obj);
+
+            //Call the create event:
+            foreach (var i in Objects) //I used 'i' here instead of 'obj' because 'obj' is taken
+            {
+                i.Create(obj);
+            }
+
+            obj.Create(obj); //the loop above won't do this since it loops trough "Objects" and "obj" isnt in that list yet
+        }
+        static public void InstantImportExisting(GameObject obj)
+        {
+            Objects.Add(obj);
+
+            //Call the create event:
+            foreach (var i in Objects) //I used 'i' here instead of 'obj' because 'obj' is taken
+            {
+                i.Create(obj);
+            }
+        }
+
         static public void Destroy(GameObject obj)
         {
             ObjectsToDestroy.Add(obj);
