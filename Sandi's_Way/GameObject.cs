@@ -359,6 +359,10 @@ namespace Sandi_s_Way
                 return false;
             }
         }
+        public float GetDistance(GameObject obj)
+        {
+            return (this.Sprite.Position - obj.Sprite.Position).Length();
+        }
         #endregion
 
         private Vector2 AngleToDirection(float angle)

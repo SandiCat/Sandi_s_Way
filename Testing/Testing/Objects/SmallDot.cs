@@ -90,5 +90,13 @@ namespace Testing
             Testing.Console.UniqueLine("Small dot is intersecting with the boundary");
             //CreateObject(typeof(YellowObject), Sprite.Position);
         }
+        public override void Update()
+        {
+            if (ObjectManager.Get(typeof(BlueObject)).Count != 0)
+            {
+                float distance = GetDistance(ObjectManager.Get(typeof(BlueObject))[0]);
+                Testing.Console.UniqueLine("Distance between Blue Object and Small dot is " + distance.ToString());
+            }
+        }
     }
 }
